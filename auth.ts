@@ -8,6 +8,8 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter";
 export const {
   handlers: { GET, POST },
   auth,
+  signIn,
+  signOut,
 } = NextAuth({
     adapter:MongoDBAdapter(MongoClient),
     session:{ strategy:"jwt"},
