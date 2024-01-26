@@ -1,4 +1,4 @@
-import { IuserModel } from "@/types/User"
+import { IUserModel } from "@/types/User"
 import { Schema, model, models } from "mongoose"
 
 const UserSchame = new Schema({
