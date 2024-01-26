@@ -12,6 +12,7 @@ export const {
   signOut,
 } = NextAuth({
     adapter:MongoDBAdapter(MongoClient),
+    secret:process.env.AUTH_SECRET,
     session:{ strategy:"jwt"},
   ...authConfig,
 });
