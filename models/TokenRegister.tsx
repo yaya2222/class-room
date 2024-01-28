@@ -1,10 +1,10 @@
+import { ITokenRegister } from "@/types/TokenRegister"
 import { Schema, model, models } from "mongoose"
 
-const TokenRegisterSchema = new Schema({
-    idUser:{type:Schema.Types.ObjectId,required:true},
-    expires:{type:Date,default:new Date(Date.now() + 5 * 60 * 1000)}
+const TokenRegisterSchema = new Schema<ITokenRegister>({
+    email:{type:String,required:true},
+    token:{type:String,required:true},
+    expires:{type:Date,required:true}
 })
 
-const TokenRegister= models.User || model("TokenRegister",TokenRegisterSchema)
-
-export default TokenRegister
+export default models.TokenRegister|| model<ITokenRegister>("TokenRegister",TokenRegisterSchema)

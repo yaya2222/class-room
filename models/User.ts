@@ -1,7 +1,7 @@
 import { IUserModel } from "@/types/User"
 import { Schema, model, models } from "mongoose"
 
-const UserSchame = new Schema({
+const UserSchame = new Schema<IUserModel>({
     name: { type: String, required: true },
     email: {
         type: String,
@@ -14,5 +14,7 @@ const UserSchame = new Schema({
     emailVerified:{type:Boolean,default:false}
 },{timestamps:true})
 
-export default models.User || model<IuserModel>("User",UserSchame)
+
+
+export default models?.User || model<IUserModel>("User",UserSchame)
 

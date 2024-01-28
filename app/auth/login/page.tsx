@@ -12,14 +12,10 @@ const FieldForm: FiledForm[] = [
 
 export default function LoginPage() {
   const action = (fromData: FormData) => {
-    console.log(fromData.get("email"));
-    console.log(fromData.get("password"));
   };
 
   return (
-    <div className="h-full flex flex-col justify-center items-center bg-sky-400">
-      <div className="flex flex-col shadow-md rounded-lg p-6 gap-6  w-[400px] bg-white">
-        <h1 className="text-center text-2xl font-semibold">Classroom</h1>
+    <>
         <h2 className="text-center text-md text-gray-700">Welcome back</h2>
           <Social />
           <Line />
@@ -53,7 +49,6 @@ export default function LoginPage() {
         >
           Don't have an account?
         </Link>
-      </div>
-    </div>
+        </>
   );
 }

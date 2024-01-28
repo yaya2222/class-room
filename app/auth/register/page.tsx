@@ -35,16 +35,12 @@ export default function RegisterPage() {
   });
 
   const onSubmit =async (values: z.infer<typeof RegisterSchema>) => {
-    console.log(values);
     const res=await register(values)
-    console.log(res);
     
   };
 
   return (
-    <div className="h-full flex flex-col justify-center items-center bg-sky-400">
-      <div className="flex flex-col shadow-md rounded-lg p-6 gap-6  w-[400px] bg-white">
-        <h1 className="text-center text-2xl font-semibold">Classroom</h1>
+    <>
         <h2 className="text-center text-md text-gray-700">
           Create your account
         </h2>
@@ -85,8 +81,7 @@ export default function RegisterPage() {
         >
           Already have an account?
         </Link>
-      </div>
-    </div>
+        </>
   );
 }
 

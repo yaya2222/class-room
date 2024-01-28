@@ -15,3 +15,7 @@ export const RegisterSchema = z.object({
     path: ["confirmPassword"],
     message: "Password don't match",
 });
+
+export const VerificationEmailSchema = z.object({
+    code:z.string().min(6,{ message: "Minimum 6 characters  required" })
+})
