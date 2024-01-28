@@ -1,11 +1,16 @@
 import { Document } from "mongoose";
 
+export enum enumRole{
+    ADMIN="admin",
+    USER="user"
+}
+
 export default interface IUser {
     name: string,
     email: string,
     password: string,
     image: string,
-    isAdmin: boolean,
+    role: enumRole,
     emailVerified: boolean,
 }
 

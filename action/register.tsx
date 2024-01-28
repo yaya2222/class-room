@@ -10,6 +10,7 @@ import { IUserModel } from "@/types/User";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import bcrypt from "bcryptjs"
+import { getUserByEmail } from "@/services/user";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   await dbConnect();
@@ -20,7 +21,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
   }
   const { name, email, password } = vaildatedFields.data;
 
-  const exsitingUser = await User.findOne({ email });
+  const exsitingUser = await getUserByEmail(email);
   if (exsitingUser) {
     return { error: "Email already in use!" };
   }

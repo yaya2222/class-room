@@ -1,17 +1,36 @@
 "use client";
 
+import { login } from "@/action/login";
 import Line from "@/components/auth/Line";
 import Social from "@/components/auth/Social";
+import { LoginSchema } from "@/lib/zodSchema";
 import FiledForm from "@/types/filedForm";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const FieldForm: FiledForm[] = [
   { id: "email", name: "email", label: "Email", type: "email" },
   { id: "password", name: "password", label: "Password", type: "password" },
 ];
 
+type FieldLoginForm =  "email" | "password" ;
+
+
 export default function LoginPage() {
-  const action = (fromData: FormData) => {
+
+  const form= useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit =async (values: z.infer<typeof LoginSchema>) => {
+    const res=await login(values)
+    
   };
 
   return (
@@ -19,7 +38,7 @@ export default function LoginPage() {
         <h2 className="text-center text-md text-gray-700">Welcome back</h2>
           <Social />
           <Line />
-        <form action={action} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           {FieldForm.map((field) => (
             <div key={field.id} className="flex flex-col gap-1">
               <label htmlFor={field.id} className="text-xs text-gray-500">
@@ -28,7 +47,7 @@ export default function LoginPage() {
               <input
                 id={field.id}
                 type={field.type}
-                name={field.name}
+                {...form.register(field.name as FieldLoginForm)}
                 className="text-sm  py-3  px-3 rounded-lg border border-gray-300"
               />
             </div>

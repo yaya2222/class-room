@@ -3,7 +3,7 @@ import { IUserModel } from "@/types/User";
 import { ObjectId } from "mongoose";
 
 
-export const getUserById = (id: ObjectId) => {
+export const getUserById = (id: string) => {
     try {
         return User.findById(id)
     } catch (error) {

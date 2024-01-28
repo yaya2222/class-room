@@ -1,5 +1,6 @@
-import { IUserModel } from "@/types/User"
+import { IUserModel, enumRole } from "@/types/User"
 import { Schema, model, models } from "mongoose"
+import { string } from "zod"
 
 const UserSchame = new Schema<IUserModel>({
     name: { type: String, required: true },
@@ -9,11 +10,10 @@ const UserSchame = new Schema<IUserModel>({
         unique: true,
     },
     password: { type: String, required: true },
-    isAdmin:{type:Boolean,default:false},
+    role:{type:String,default:enumRole.USER},
     image:{type:String},
     emailVerified:{type:Boolean,default:false}
 },{timestamps:true})
-
 
 
 export default models?.User || model<IUserModel>("User",UserSchame)

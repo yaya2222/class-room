@@ -21,7 +21,7 @@ const FieldForm: FiledForm[] = [
   },
 ];
 
-type Field = "name" | "email" | "password" | "confirmPassword";
+type FieldRegisterForm = "name" | "email" | "password" | "confirmPassword";
 
 export default function RegisterPage() {
   const form= useForm<z.infer<typeof RegisterSchema>>({
@@ -50,7 +50,7 @@ export default function RegisterPage() {
               <label
                 htmlFor={field.id}
                 className={`text-xs  ${
-                  form.formState.errors[field.name as Field] ? "text-red-500" : "text-gray-500"
+                  form.formState.errors[field.name as FieldRegisterForm] ? "text-red-500" : "text-gray-500"
                 }`}
               >
                 {field.label}
@@ -58,10 +58,10 @@ export default function RegisterPage() {
               <input
                 id={field.id}
                 type={field.type}
-                {...form.register(field.name as Field)}
+                {...form.register(field.name as FieldRegisterForm)}
                 className="text-sm  py-3  px-3 rounded-lg border border-gray-300"
               />
-              <ErrorInput message={form.formState.errors[field.name as Field]?.message} />
+              <ErrorInput message={form.formState.errors[field.name as FieldRegisterForm]?.message} />
             </div>
           ))}
 
@@ -85,47 +85,3 @@ export default function RegisterPage() {
   );
 }
 
-
-{/* <div className="flex flex-col gap-1">
-            <label htmlFor="name" className={`text-xs  ${errors.name?"text-red-500":"text-gray-500"}`}>
-              Name
-            </label>
-            <input
-              id="name"
-              {...register("name")}
-              className={`text-sm  py-3  px-3 rounded-lg border ${errors.name?"border-red-300":"border-gray-300"}`}
-            />
-            <ErrorInput message={errors.name?.message}/>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="email" className="text-xs text-gray-500">
-              Email
-            </label>
-            <input
-              id="email"
-              {...register("email")}
-              className="text-sm  py-3  px-3 rounded-lg border border-gray-300"
-            />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="password" className="text-xs text-gray-500">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              {...register("password")}
-              className="text-sm  py-3  px-3 rounded-lg border border-gray-300"
-            />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="confirmPassword" className="text-xs text-gray-500">
-              Confirm Password
-            </label>
-            <input
-              id="confirmPassword"
-              type="password"
-              {...register("confirmPassword")}
-              className="text-sm  py-3  px-3 rounded-lg border border-gray-300"
-            />
-          </div> */}

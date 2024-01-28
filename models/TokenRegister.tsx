@@ -7,4 +7,4 @@ const TokenRegisterSchema = new Schema<ITokenRegister>({
     expires:{type:Date,required:true}
 })
 
-export default models.TokenRegister|| model<ITokenRegister>("TokenRegister",TokenRegisterSchema)
+export default models?.TokenRegister|| model<ITokenRegister>("TokenRegister",TokenRegisterSchema)
