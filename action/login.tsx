@@ -40,6 +40,5 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
       `/auth/verificationEmail?validation=${validation}&password=${password}`
     );
   }
-  await signInWithCredentials(existingUser.email, password)
-
+  return await signInWithCredentials(existingUser.email, password);
 };

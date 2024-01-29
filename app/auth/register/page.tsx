@@ -1,7 +1,9 @@
 "use client";
 
 import { register } from "@/action/register";
-import ErrorInput from "@/components/ErrorInput";
+import ErrorMessage from "@/components/ErrorMessage";
+import FormContext from "@/components/auth/FormContext";
+import { useHandleAction } from "@/hooks/useHandleAction";
 import { RegisterSchema } from "@/lib/zodSchema";
 import FiledForm from "@/types/filedForm";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,10 +23,9 @@ const FieldForm: FiledForm[] = [
   },
 ];
 
-type FieldRegisterForm = "name" | "email" | "password" | "confirmPassword";
-
 export default function RegisterPage() {
-  const form= useForm<z.infer<typeof RegisterSchema>>({
+  const { handleAction, error, isPending } = useHandleAction();
+  const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
       name: "",
@@ -34,54 +35,31 @@ export default function RegisterPage() {
     },
   });
 
-  const onSubmit =async (values: z.infer<typeof RegisterSchema>) => {
-    const res=await register(values)
-    
+  const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+    handleAction(register,values);
   };
 
   return (
     <>
-        <h2 className="text-center text-md text-gray-700">
-          Create your account
-        </h2>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          {FieldForm.map((field) => (
-            <div key={field.id} className="flex flex-col gap-1">
-              <label
-                htmlFor={field.id}
-                className={`text-xs  ${
-                  form.formState.errors[field.name as FieldRegisterForm] ? "text-red-500" : "text-gray-500"
-                }`}
-              >
-                {field.label}
-              </label>
-              <input
-                id={field.id}
-                type={field.type}
-                {...form.register(field.name as FieldRegisterForm)}
-                className="text-sm  py-3  px-3 rounded-lg border border-gray-300"
-              />
-              <ErrorInput message={form.formState.errors[field.name as FieldRegisterForm]?.message} />
-            </div>
-          ))}
+      <h2 className="text-center text-md text-gray-700">Create your account</h2>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      {<ErrorMessage message={error}/>}
 
-          
-          <div className="text-center">
-            <button
-              type="submit"
-              className="bg-sky-400 hover:bg-sky-600 px-10 py-2 rounded-lg text-white font-semibold"
-            >
-              Register
-            </button>
-          </div>
-        </form>
-        <Link
-          href="/auth/login"
-          className="text-center text-xs hover:underline text-gray-500"
-        >
-          Already have an account?
-        </Link>
-        </>
+        <FormContext
+          fields={FieldForm}
+          errors={form.formState.errors}
+          register={form.register}
+          textButton="Register"
+          isPending={isPending}
+        />
+      </form>
+      <Link
+        href="/auth/login"
+        className="text-center text-xs hover:underline text-gray-500"
+      >
+        Already have an account?
+      </Link>
+    </>
   );
 }
 

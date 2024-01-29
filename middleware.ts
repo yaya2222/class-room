@@ -10,7 +10,6 @@ const {pathname} = nextUrl
 const isLogin = !!req.auth
 const isApiAuthRoutes = nextUrl.pathname.startsWith(apiAuthPrefix)
 const isPublicRoutes = publicRoutes.includes(pathname)
-const isAdminRoutes = adminRoutes.includes(pathname)
 const isAuthRoutes = authRoutes.includes(pathname)
 if(isApiAuthRoutes) return null
 
@@ -21,7 +20,6 @@ if(isAuthRoutes){
     return null
 }
 
-// console.log(req.nextauth);
 
 
 if(!isLogin&&!isPublicRoutes){
