@@ -9,11 +9,14 @@ import User from "@/models/User"
 import { signInWithCredentials } from "@/lib/auth"
 import { IUserModel } from "@/types/User"
 import dbConnect from "@/lib/db"
+import { cookies } from 'next/headers'
 
-export const VerificationEmail = async (values: z.infer<typeof VerificationEmailSchema>, validation: string | null, password: string | null) => {
+export const VerificationEmail = async (values: z.infer<typeof VerificationEmailSchema>) => {
     await dbConnect();
-
-    if (!validation || !password) {
+    const hashEmail = cookies().get("validation_e")?.value
+    const password = cookies().get("validation_p")?.value
+ 
+    if (!hashEmail||!password) {
         return { error: "Invalid data!" }
     }
 
@@ -36,7 +39,7 @@ export const VerificationEmail = async (values: z.infer<typeof VerificationEmail
 
 
 
-    const verificationEmail = await bcrypt.compare(token.email, validation)
+    const verificationEmail = await bcrypt.compare(token.email, hashEmail)
     if (!verificationEmail) {
         return { error: "Identification failed" }
     }
@@ -47,5 +50,8 @@ export const VerificationEmail = async (values: z.infer<typeof VerificationEmail
         return { error: "Try again" }
     }
 
+    cookies().delete("validation_e")
+    cookies().delete("validation_p")
+    
     await signInWithCredentials(user.email, password)
 }

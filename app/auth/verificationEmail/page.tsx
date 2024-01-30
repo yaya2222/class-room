@@ -4,7 +4,6 @@ import { VerificationEmailSchema } from "@/lib/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useSearchParams } from "next/navigation";
 import { VerificationEmail } from "@/action/verificationEmail";
 import FiledForm from "@/types/filedForm";
 import FormContext from "@/components/auth/FormContext";
@@ -15,11 +14,8 @@ const FieldForm: FiledForm[] = [
   { id: "code", name: "code", label: "Code", type: "text" },
 ];
 export default function VerificationEmailPage() {
-  const { handleActionVerificationEmail, error, isPending } = useHandleAction();
+  const {handleAction, error, isPending } = useHandleAction();
 
-  const searchParams = useSearchParams();
-  const validation = searchParams.get("validation");
-  const password = searchParams.get("password");
 
   const form = useForm<z.infer<typeof VerificationEmailSchema>>({
     resolver: zodResolver(VerificationEmailSchema),
@@ -29,7 +25,7 @@ export default function VerificationEmailPage() {
   });
 
   const onSubmit = async (values: z.infer<typeof VerificationEmailSchema>) => {
-    handleActionVerificationEmail(values, validation, password)
+    handleAction(VerificationEmail,values)
   };
 
   return (

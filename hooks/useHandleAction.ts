@@ -28,27 +28,8 @@ export const useHandleAction = () => {
     });
   };
 
-  const handleActionVerificationEmail = (
-    values: z.infer<typeof VerificationEmailSchema>,
-    validation: string | null,
-    password: string | null
-  ) => {
-    startTransition(() => {
-      VerificationEmail(values, validation, password)
-        .then((res) => {
-          if (res) {
-            if (res.error) setError(res.error);
-          }
-        })
-        .catch(() => {
-          setError("Operation failed");
-        });
-    });
-  };
-
   return {
     handleAction,
-    handleActionVerificationEmail,
     isPending,
     error,
     success,

@@ -1,10 +1,10 @@
 import NextAuth from "next-auth"
 import authConfig from "@/auth.config"
-import { DEFAULT_LOGIN_REDIRECT, adminRoutes, apiAuthPrefix, authRoutes, publicRoutes } from "@/route"
+import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, authRoutes, publicRoutes } from "@/route"
 
 const {auth}= NextAuth(authConfig)
 
-export default auth(async (req) => {
+export default auth( (req) => {
 const {nextUrl} = req
 const {pathname} = nextUrl
 const isLogin = !!req.auth

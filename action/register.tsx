@@ -11,6 +11,8 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import bcrypt from "bcryptjs"
 import { getUserByEmail } from "@/services/user";
+import { cookies } from 'next/headers'
+
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   await dbConnect();
@@ -36,9 +38,11 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: "Fail to create token" };
   }
   await sendTowFactorTokenEmail(newUser.email, newToken.token);
+  
 
   const validation  = await bcrypt.hash(newUser.email, 10);
-
+  cookies().set("validation_e",validation)
+  cookies().set("validation_p",password) 
   
-  return redirect(`/auth/verificationEmail?validation=${validation}&password=${password}`);
+  return redirect(`/auth/verificationEmail`);
 };

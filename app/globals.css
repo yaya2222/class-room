@@ -7,3 +7,11 @@ body,
 :root{
   height: 100%;
 }
+
+.iconSidebar{
+  @apply h-7 w-7
+}
+
+.linkSidebar:hover div{
+  @apply  text-blue-700 translate-x-2 -translate-y-1
+}
