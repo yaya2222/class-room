@@ -38,7 +38,7 @@ export default function Sidebar() {
       <div className="px-4 py-8 w-56 shadow-xl h-screen hidden md:block">
       <h1 className="text-2xl px-2 font-semibold">Classroom</h1>
       <div className="h-[0.5px] bg-slate-400"></div>
-      <div className="flex flex-col gap-2 mt-4">
+      <nav className="flex flex-col gap-2 mt-4">
         {links.map((link) => (
           <Link
             key={link.label}
@@ -53,7 +53,7 @@ export default function Sidebar() {
             {link.icon} {link.label}
           </Link>
         ))}
-      </div>
+      </nav>
       </div>
       <div className="absolute bottom-20 w-full text-center">
 
