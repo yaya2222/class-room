@@ -34,8 +34,8 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="relative" >
-      <div className="px-4 py-8 w-56 shadow-xl h-screen hidden md:block">
+    <aside className="relative hidden md:block" >
+      <div className="px-4 py-8 w-56 shadow-xl h-screen">
       <h1 className="text-2xl px-2 font-semibold">Classroom</h1>
       <div className="h-[0.5px] bg-slate-400"></div>
       <nav className="flex flex-col gap-2 mt-4">

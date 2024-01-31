@@ -12,7 +12,11 @@ const UserSchame = new Schema<IUserModel>({
     password: { type: String, required: true },
     role:{type:String,default:enumRole.USER},
     image:{type:String},
-    emailVerified:{type:Boolean,default:false}
+    emailVerified:{type:Boolean,default:false},
+    classes:{type:[{type:Schema.Types.ObjectId}],default:[]},
+    // classesManager:{type:[{type:Schema.Types.ObjectId}],default:[]},
+    // classesTeacher:{type:[{type:Schema.Types.ObjectId}],default:[]},
+    // classesStudent:{type:[{type:Schema.Types.ObjectId}],default:[]},
 },{timestamps:true})
 
 

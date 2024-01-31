@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, ObjectId } from "mongoose";
 
 export enum enumRole{
     ADMIN="admin",
@@ -12,6 +12,10 @@ export default interface IUser {
     image: string,
     role: enumRole,
     emailVerified: boolean,
+    classes:[ObjectId],
+//     classesManager:[ObjectId],
+//     classesTeacher:[ObjectId],
+//     classesStudent:[ObjectId],
 }
 
 export interface IUserModel extends IUser,Document {}
