@@ -9,7 +9,9 @@ const ClassroomSchema = new Schema<IClassroom>({
     users: {type:[{
         idUser: { type: Schema.Types.ObjectId, ref: "User" },
         role: { type: enumUsersClassRole, default: enumUsersClassRole.STUDENT }
-    }],default:[]}
+    }],default:[]},
+    code:{type:String, required: true },
+    posts:[{ type: Schema.Types.ObjectId, ref: "Post" }]
 }, { timestamps: true })
 
 

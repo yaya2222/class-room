@@ -1,8 +1,5 @@
 "use client";
-import { VerificationEmail } from "@/action/verificationEmail";
-import { VerificationEmailSchema } from "@/lib/zodSchema";
 import { useState, useTransition } from "react";
-import { z } from "zod";
 
 export const useHandleAction = () => {
   const [isPending, startTransition] = useTransition();

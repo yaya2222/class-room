@@ -32,7 +32,7 @@ const links = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-
+  
   return (
     <aside className="relative hidden md:block" >
       <div className="px-4 py-8 w-56 shadow-xl h-screen">
@@ -43,8 +43,8 @@ export default function Sidebar() {
           <Link
             key={link.label}
             href={link.href}
-            className={`flex items-center gap-3 py-2 transition duration-500  text-gray-600 hover:text-blue-700 hover:translate-x-2
-             ${link.href == pathname ? "text-blue-700 translate-x-1" : ""}`}
+            className={`flex items-center gap-3 py-2 transition duration-50 hover:text-blue-700 hover:translate-x-2 
+            ${link.href === pathname ? "text-blue-700 translate-x-1" : "text-gray-600"}`}
           >
             {link.href !== pathname && <div></div>}{" "}
             {link.href === pathname && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { login } from "@/action/login";
+import { login } from "@/action/users/login";
 import ErrorMessage from "@/components/ErrorMessage";
 import FormContext from "@/components/auth/FormContext";
 import Line from "@/components/auth/Line";

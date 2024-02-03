@@ -1,6 +1,6 @@
 "use client";
 
-import { register } from "@/action/register";
+import { register } from "@/action/users/register";
 import ErrorMessage from "@/components/ErrorMessage";
 import FormContext from "@/components/auth/FormContext";
 import { useHandleAction } from "@/hooks/useHandleAction";

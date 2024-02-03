@@ -5,6 +5,7 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import { getUserById } from "./services/user";
 import { IUserModel } from "./types/User";
 import { type JWT } from "next-auth/jwt";
+import dbConnect from "./lib/db";
 
 
 
@@ -27,6 +28,7 @@ export const {
   callbacks: {
     async signIn({ user, account }) {
       if (account?.provider !== "credentials") return true;
+      await dbConnect()
 
       const existingUser: IUserModel = await getUserById(user.id as string);
       if (!existingUser.emailVerified) return false;
@@ -34,17 +36,21 @@ export const {
     },
 
     async jwt({ token }) {
+     await dbConnect()
       if (!token.sub) return token
-
-      const existingUser: IUserModel = await getUserById(token.sub);
+      const existingUser: IUserModel|null = await getUserById(token.sub);
+      if(!existingUser) return token
       token.role = existingUser.role
       token.name = existingUser.name
       token.email = existingUser.email
       token.image = existingUser.image
+      console.log({token});
       return token;
     },
 
     async session({ session, token }: { session: Session; token?: JWT },) {
+      console.log("session");
+      
       if (!token) return session
       if (!session.user) return session
       if (token.sub) {

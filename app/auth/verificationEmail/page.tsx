@@ -4,7 +4,7 @@ import { VerificationEmailSchema } from "@/lib/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { VerificationEmail } from "@/action/verificationEmail";
+import { VerificationEmail } from "@/action/users/verificationEmail";
 import FiledForm from "@/types/filedForm";
 import FormContext from "@/components/auth/FormContext";
 import { useHandleAction } from "@/hooks/useHandleAction";
