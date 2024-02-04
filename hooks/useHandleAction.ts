@@ -15,8 +15,14 @@ export const useHandleAction = () => {
       action(values)
         .then((res) => {
           if (res) {
-            if (res.error) setError(res.error);
-            if (res.success) setSuccess(res.success);
+            if (res.error) {
+              setError(res.error)
+              setSuccess(undefined)
+            };
+            if (res.success) {
+              setSuccess(res.success);
+              setError(undefined)
+            };
           }
         })
         .catch(() => {

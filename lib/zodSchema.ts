@@ -20,8 +20,9 @@ export const VerificationEmailSchema = z.object({
     code:z.string().min(6,{ message: "Minimum 6 characters  required" })
 })
 
-export const createClassSchema=z.object({
+export const CreateClassSchema=z.object({
     name:z.string().min(3,{ message: "Minimum 3 characters  required" }),
     description:z.optional(z.string()),
     topic:z.optional(z.string()),
+    url:z.optional(z.string())
 })

@@ -8,7 +8,7 @@ const ClassroomSchema = new Schema<IClassroom>({
     image: { type: String, required: true },
     users: {type:[{
         idUser: { type: Schema.Types.ObjectId, ref: "User" },
-        role: { type: enumUsersClassRole, default: enumUsersClassRole.STUDENT }
+        role: { type: String,enum:enumUsersClassRole, default: enumUsersClassRole.STUDENT }
     }],default:[]},
     code:{type:String, required: true },
     posts:[{ type: Schema.Types.ObjectId, ref: "Post" }]

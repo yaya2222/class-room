@@ -44,12 +44,10 @@ export const {
       token.name = existingUser.name
       token.email = existingUser.email
       token.image = existingUser.image
-      console.log({token});
       return token;
     },
 
     async session({ session, token }: { session: Session; token?: JWT },) {
-      console.log("session");
       
       if (!token) return session
       if (!session.user) return session

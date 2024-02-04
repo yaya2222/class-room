@@ -5,7 +5,6 @@ interface ClassesPageProps{
 }
 
 export default function classPage({params}:ClassesPageProps) {
-    console.log(params);
     
   return (
     <div>class {params.id}</div>

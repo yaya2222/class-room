@@ -1,9 +1,9 @@
 import { Document, ObjectId } from "mongoose";
 
 export enum enumUsersClassRole {
-    ADMINISTRATION,
-    TEACHER,
-    STUDENT,
+    ADMINISTRATION="administration",
+    TEACHER="Teacher",
+    STUDENT="student",
 }
 
 export enum enumPost {

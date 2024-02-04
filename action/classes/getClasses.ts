@@ -8,6 +8,9 @@ import { Session } from "next-auth";
 
 
 export const getClasses = async () => {
+    try {
+        
+   
     const session:Session | null = await auth()
     
     if(!session?.user){
@@ -17,8 +20,13 @@ export const getClasses = async () => {
     if(!user){
         return {error:"User not exsit"}
     }
-    console.log(user);
-    // const allClasses = await Classroom.find({_id:{$in:user.classes}})
+    const allClasses = await Classroom.find({_id:{$in:user.classes}})
+    return {allClasses}
+} catch (error) {
+        console.log(error);
+        return {error:"Operation failed"}
+}
+    
 }
 
 // [auth][error] JWTSessionError: Read more at https://errors.authjs.dev#jwtsessionerror
