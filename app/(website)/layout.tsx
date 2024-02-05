@@ -6,10 +6,12 @@ export default function WebsiteLauout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="min-h-screen flex bg-gray-300">
+    <main className="min-h-screen flex">
       <Sidebar />
-
+      <div className="py-10 px-8 w-full">
       {children}
+
+      </div>
     </main>
   );
 }

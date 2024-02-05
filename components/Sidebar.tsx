@@ -6,6 +6,8 @@ import { TbMessageShare } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { MdLogout } from "react-icons/md";
+import Image from "next/image";
 
 const links = [
   {
@@ -32,53 +34,47 @@ const links = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  
+
   return (
-    <aside className="relative hidden md:block" >
-      <div className="px-4 py-8 w-56 shadow-xl h-screen">
-      <h1 className="text-2xl px-2 font-semibold">Classroom</h1>
-      <div className="h-[0.5px] bg-slate-400"></div>
-      <nav className="flex flex-col gap-2 mt-4">
-        {links.map((link) => (
-          <Link
-            key={link.label}
-            href={link.href}
-            className={`flex items-center gap-3 py-2 transition duration-50 hover:text-blue-700 hover:translate-x-2 
-            ${link.href === pathname ? "text-blue-700 translate-x-1" : "text-gray-600"}`}
-          >
-            {link.href !== pathname && <div></div>}{" "}
-            {link.href === pathname && (
-              <div className="w-1 h-7 rounded-e-lg bg-blue-700 transition-all duration-1000 ease-in-out"></div>
-            )}
-            {link.icon} {link.label}
-          </Link>
-        ))}
-      </nav>
+    <aside className="relative h-full hidden md:block rounded-e-3xl">
+      <div className=" py-8 w-72 shadow-xl h-screen bg-gradient-to-t from-teal-400 to-blue-500 text-white rounded-e-3xl">
+        <div className="px-6 text-center">
+          <h1 className="text-2xl font-semibold flex flex-col items-center justify-center">
+            <Image src="/logo.png" alt="logo" width={110} height={110}/>
+            <span className="-mt-2">
+
+            Classroom
+            </span>
+            </h1>
+          <div className="h-[0.5px] bg-slate-400"></div>
+        </div>
+        <nav className="flex flex-col gap-6 mt-10">
+          {links.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="flex items-center gap-8 px-2 "
+            >
+              {!pathname.startsWith(link.href) && <div></div>}
+              {pathname.startsWith(link.href) && (
+                <div className="w-1 h-10 rounded-e-lg bg-white transition-all duration-1000 ease-in-out"></div>
+              )}
+              <span className="flex items-center w-full text-center gap-3 transition hover:translate-x-2 duration-50 ">
+                {link.icon} {link.label}
+              </span>
+            </Link>
+          ))}
+        </nav>
       </div>
       <div className="absolute bottom-20 w-full text-center">
-
-      <button className="bg-sky-400 hover:bg-sky-600 px-10 py-2 rounded-lg text-white font-semibold disabled:bg-sky-200" onClick={()=>signOut()}>Logout</button>
+        <button
+          className="flex gap-3 items-center justify-center w-full text-white"
+          onClick={() => signOut()}
+        >
+          Logout
+          <MdLogout className="text-xl" />
+        </button>
       </div>
     </aside>
   );
 }
-
-// return (
-//   <aside className="px-1 py-8 w-56">
-//     <h1 className="text-2xl px-4 font-semibold">Classroom</h1>
-//     <div className="px-4 h-[0.5px] bg-slate-400"></div>
-//     <div className="flex flex-col gap-2 mt-4">
-//       {links.map((link) => (
-//         <Link
-//           key={link.label}
-//           href={link.href}
-//           className={`flex items-center gap-4 py-2 transition duration-500  text-gray-600 hover:text-blue-700 hover:translate-x-2
-//            ${link.href === pathname ? "text-blue-700 translate-x-2" : ""}`}
-//         >
-//           {link.href !== pathname && <div></div>}
-//           {link.href === pathname && <div className="w-1 h-7 rounded-e-lg bg-blue-700 duration-700"></div>}
-//           <div className="flex items-center gap-2">
-//             {link.icon} {link.label}
-//           </div>
-//         </Link>
-//       ))}

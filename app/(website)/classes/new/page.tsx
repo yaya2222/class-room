@@ -45,7 +45,6 @@ export default function NewPage() {
     handleAction(CreateClass,values)
   };
 
-  console.log({isPending,error,success});
   
 
   return (
