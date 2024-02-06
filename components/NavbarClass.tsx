@@ -12,8 +12,8 @@ const links = [
     href: "/workspace",
   },
   {
-    label: "People",
-    href: "/people",
+    label: "Members",
+    href: "/members",
   },
   {
     label: "Scores",

@@ -1,6 +1,4 @@
 import User from "@/models/User";
-import { IUserModel } from "@/types/User";
-import { ObjectId } from "mongoose";
 
 
 export const getUserById = (id: string) => {

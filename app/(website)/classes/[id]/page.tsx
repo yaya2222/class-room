@@ -1,4 +1,5 @@
 import { getClassById } from "@/action/classes/GetClassById";
+import Classroom from "@/components/Classroom";
 import Image from "next/image";
 
 interface ClassesPageProps {
@@ -21,8 +22,12 @@ export default async function classPage({ params }: ClassesPageProps) {
               alt={classroom.name}
               width={256}
               height={256}
-              className="h-full w-full rounded-3xl object-fill"
+              className="h-full w-full rounded-t-3xl object-cover"
             />
+          </div>
+          <div className="flex flex-col gap-2 pt-4 shadow-lg">
+            <span className="text-4xl">{classroom.name}</span>
+            <span className="text-2xl">{classroom.description}</span>
           </div>
         </section>
       )}
