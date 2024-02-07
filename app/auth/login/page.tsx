@@ -7,7 +7,7 @@ import Line from "@/components/auth/Line";
 import Social from "@/components/auth/Social";
 import { useHandleAction } from "@/hooks/useHandleAction";
 import { LoginSchema } from "@/lib/zodSchema";
-import FiledForm from "@/types/filedForm";
+import FiledForm from "@/types/FiledForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";

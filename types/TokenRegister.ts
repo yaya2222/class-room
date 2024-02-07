@@ -1,4 +1,4 @@
-import { Types,Document, ObjectId } from "mongoose";
+import {Document } from "mongoose";
 
 export default interface TokenRegister {
     email: string,

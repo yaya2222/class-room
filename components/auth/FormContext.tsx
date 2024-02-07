@@ -1,5 +1,5 @@
 
-import FiledForm from "@/types/filedForm";
+import FiledForm from "@/types/FiledForm";
 import {
   FieldErrors,
   FieldValues,

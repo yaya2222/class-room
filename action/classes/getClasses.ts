@@ -3,6 +3,7 @@
 import { auth } from "@/auth";
 import Classroom from "@/models/Classroom";
 import { getUserById } from "@/services/user";
+import { IClassroom } from "@/types/Classroom";
 import { IUserModel } from "@/types/User";
 import { Session } from "next-auth";
 
@@ -19,7 +20,7 @@ export const getClasses = async () => {
     }
     const allIdsOfClasses = user.classes.map((c) => c.idClass);
 
-    const allClasses = await Classroom.find({ _id: { $in: allIdsOfClasses } });
+    const allClasses:IClassroom [] = await Classroom.find({ _id: { $in: allIdsOfClasses } });
     return { allClasses };
   } catch (error) {
     console.log(error);

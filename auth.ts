@@ -3,9 +3,10 @@ import authConfig from "@/auth.config";
 import MongoClient from "@/lib/mogodb";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import { getUserById } from "./services/user";
-import { IUserModel } from "./types/User";
+import { IUserModel, enumRole } from "./types/User";
 import { type JWT } from "next-auth/jwt";
 import dbConnect from "./lib/db";
+import User from "./models/User";
 
 
 
@@ -24,6 +25,12 @@ export const {
   pages: {
     signIn: "/auth/login",
     // error: "/auth/login",
+  },
+  events: {
+    async linkAccount({ user }) {
+      await dbConnect()
+      await User.findByIdAndUpdate(user.id,{emailVerified:true,role:enumRole.USER,classes:[]})
+    },
   },
   callbacks: {
     async signIn({ user, account }) {

@@ -7,7 +7,6 @@ import { IClassroom } from "@/types/Classroom";
 export const getClassById=async (idClass:string)=>{
     await dbConnect()
 try {
-    console.log(idClass);
     const classroom:IClassroom | null = await Classroom.findById(idClass) 
     if(!classroom){
         return {error:"No data found"}

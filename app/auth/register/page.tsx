@@ -5,7 +5,7 @@ import ErrorMessage from "@/components/ErrorMessage";
 import FormContext from "@/components/auth/FormContext";
 import { useHandleAction } from "@/hooks/useHandleAction";
 import { RegisterSchema } from "@/lib/zodSchema";
-import FiledForm from "@/types/filedForm";
+import FiledForm from "@/types/FiledForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";

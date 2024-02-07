@@ -7,7 +7,7 @@ export default async function ClassesPage() {
   return (
     <div className="flex gap-x-6 gap-y-4 flex-wrap content-start">
       {error && <div>Error</div>}
-      {allClasses&&allClasses.map(classroom=><Classroom classroom={classroom}/>)}
+      {allClasses&&allClasses.map(classroom=><Classroom key={classroom._id} classroom={classroom}/>)}
     </div>
   );
 }

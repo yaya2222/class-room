@@ -30,11 +30,6 @@ return null
 })
 
 
-// export function middleware (req:NextResponse){
-//     console.log(123);
-    
-//     return null
-// }
 
 
 

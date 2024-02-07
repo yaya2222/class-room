@@ -2,7 +2,7 @@ import { Document, ObjectId } from "mongoose";
 
 export enum enumUsersClassRole {
     ADMINISTRATION="administration",
-    TEACHER="Teacher",
+    TEACHER="teacher",
     STUDENT="student",
 }
 
