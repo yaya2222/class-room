@@ -1,9 +1,7 @@
 import {Document, ObjectId } from "mongoose";
 
 export enum enumTypeMessage{
-    ADMINISTRATION="administration",
-    TEACHER="teacher",
-    STUDENT="student",
+    GROUP_INVITATION="group_invitation",
 }
 
 

@@ -9,6 +9,7 @@ import { IoPersonAddSharp } from "react-icons/io5";
 import { z } from "zod";
 import ErrorInput from "./ErrorInput";
 import { addMembersToClass } from "@/action/classes/addMembersToClass";
+import toast from "react-hot-toast";
 
 interface AddMembersProps {
   roleUser: enumUsersClassRole;
@@ -28,7 +29,7 @@ export default function AddMembers({
   const [isOpenModalToAddMembers, setIsOpenModalToAddMembers] =
     useState<boolean>(false);
 
-  const { handleAction, error, isPending } = useHandleAction();
+  const { handleAction, error,success, isPending } = useHandleAction();
 
   const form = useForm<z.infer<typeof AddMembersSchema>>({
     resolver: zodResolver(AddMembersSchema),
@@ -40,9 +41,16 @@ export default function AddMembers({
   const onSubmit = async (values: z.infer<typeof AddMembersSchema>) => {
     values.classroomId=classroomId,
     values.roleModal=roleModal
-    handleAction(addMembersToClass,values)
+      handleAction(addMembersToClass,values)
+      if(error){
+        toast.error(error)
+      }
+      if(success){
+        toast.success(success)
+      setIsOpenModalToAddMembers(false)
+     }
   };
-console.log({error});
+console.log({error,success});
 
   return (
     <>

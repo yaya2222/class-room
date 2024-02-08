@@ -8,7 +8,7 @@ const Meassgechema = new Schema<IMeassge>(
     type: {
       type: String,
       enum: enumTypeMessage,
-      default: enumTypeMessage.STUDENT,
+      required: true
     },
     author: { type: Schema.Types.ObjectId, ref: "User" },
     receiver: { type: Schema.Types.ObjectId, ref: "User" },

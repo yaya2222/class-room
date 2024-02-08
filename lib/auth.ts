@@ -33,7 +33,7 @@ export const getUser = async () => {
   const user = session?.user;
   if (!user) {
     await signOut();
-    return undefined
+  }else{
+    return user;
   }
-  return user;
 };

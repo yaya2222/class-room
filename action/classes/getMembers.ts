@@ -4,10 +4,11 @@ import Classroom from "@/models/Classroom"
 import { IClassroom, enumUsersClassRole } from "@/types/Classroom"
 import { IUserModel } from "@/types/User"
 import IMember from "@/types/Member"
+import dbConnect from "@/lib/db"
 
 export const getMembers = async(classroomId:string)=>{
 try {
-    
+   await dbConnect()
 
 const classroom= await Classroom.findById(classroomId).populate({
   path: 'users',
