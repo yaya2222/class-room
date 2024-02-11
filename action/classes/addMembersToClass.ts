@@ -18,7 +18,6 @@ export const addMembersToClass = async (
   try {
     await dbConnect();
     const sessionUser = await getUser();
-    if (!sessionUser) return { error: "You are not logged in" };
     const vaildatedFields = AddMembersSchema.safeParse(values);
     if (!vaildatedFields.success) {
       return { error: "Invalid field!" };
@@ -50,13 +49,15 @@ export const addMembersToClass = async (
     } else {
       const message: Meassge = {
         title: "Group invitation",
-        body: `You are welcome to join the group with permission of ${roleModal}`,
-        author: sessionUserInClassroom.idUser,
+        body: `You are welcome to join the group with permission of ${roleModal} /n 
+        id group:${classroomId}`,
+        authorEmail: sessionUser.email!,
         receiver: recipientUser._id,
         type: enumTypeMessage.GROUP_INVITATION,
         messageOpen: false,
+        href: `/classes/${classroomId}?role=${roleModal}`
       };
-       await Message.create({...message})
+      await Message.create({ ...message })
     }
 
     return { success: "Invitation sent!" };

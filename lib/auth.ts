@@ -1,6 +1,7 @@
 import { auth, signIn, signOut } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 import { AuthError } from "next-auth";
+import { redirect } from "next/navigation";
 
 export const signInWithCredentials = async (
   email: string,
@@ -33,6 +34,7 @@ export const getUser = async () => {
   const user = session?.user;
   if (!user) {
     await signOut();
+    return redirect("/auth/login")
   }else{
     return user;
   }

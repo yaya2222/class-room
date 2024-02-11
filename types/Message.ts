@@ -9,7 +9,7 @@ export default interface Meassge {
    title:string,
    body:string,
    type:enumTypeMessage,
-   author:ObjectId,
+   authorEmail:string,
    receiver:ObjectId,
    expires?: Date,
    href?:string,

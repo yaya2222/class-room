@@ -35,3 +35,15 @@ export const AddMembersSchema = z.object({
   classroomId: z.optional(z.string()),
   roleModal: z.optional(z.string()),
 });
+
+export const ProfileSchema = z.object({
+  name: z.optional(z.string()),
+  password: z.optional(z.string().min(6, { message: "Minimum 6 characters  required" })),
+  confirmPassword: z.optional(z
+    .string()
+    .min(6, { message: "Minimum 6 characters  required" })),
+
+}).refine((data) => data.password === data.confirmPassword, {
+  path: ["confirmPassword"],
+  message: "Password don't match",
+});

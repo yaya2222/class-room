@@ -10,7 +10,7 @@ const Meassgechema = new Schema<IMeassge>(
       enum: enumTypeMessage,
       required: true
     },
-    author: { type: Schema.Types.ObjectId, ref: "User" },
+    authorEmail: { type: String, required: true },
     receiver: { type: Schema.Types.ObjectId, ref: "User" },
     expires: Date,
     href: String,
