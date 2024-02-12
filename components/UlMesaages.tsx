@@ -9,12 +9,9 @@ interface UlMesaagesProps {
 
 export default function UlMesaages({ messages }: UlMesaagesProps) {
 
-  const {listMessage, clickMsg,deleteMsg,displayMsg} = useControlMessages(messages)
+  const {listMessage, clickMsg,deleteMsg,displayMsg, addToClass} = useControlMessages(messages)
 
 
-  const confirmationMessage = () => {
-
-  };
 
 
   return (
@@ -57,14 +54,14 @@ export default function UlMesaages({ messages }: UlMesaagesProps) {
             <p>{displayMsg.body}</p>
             <div className="flex items-center justify-between">
               <button
-                onClick={confirmationMessage}
-                className="bg-gradient-to-t from-teal-400 to-blue-500 text-white px-6 py-2 rounded-lg"
+                onClick={()=>addToClass()}
+                className="bg-color text-white px-6 py-2 rounded-lg"
               >
                 OK
               </button>
 
               <button
-                onClick={()=>deleteMsg(displayMsg._id)}
+                onClick={()=>deleteMsg()}
                 className="bg-red-500 px-6 py-2 text-white rounded-lg"
               >
                 Delete

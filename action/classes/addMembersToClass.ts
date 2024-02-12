@@ -5,7 +5,7 @@ import dbConnect from "@/lib/db";
 import { AddMembersSchema } from "@/lib/zodSchema";
 import Message from "@/models/Message";
 import User from "@/models/User";
-import { findUserInClassroom } from "@/services/class";
+import { findUserInClassroom } from "@/services/classroom";
 import { enumUsersClassRole } from "@/types/Classroom";
 import Meassge, { enumTypeMessage } from "@/types/Message";
 import { IUserModel } from "@/types/User";

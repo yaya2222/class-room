@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteMessage, openMessage } from "@/action/messageActions";
+import { confirmationMessage, deleteMessage, openMessage } from "@/action/messageActions";
 import { IMessge } from "@/types/Message";
 import { ObjectId } from "mongoose";
 import { useState } from "react";
@@ -24,19 +24,32 @@ export const useControlMessages = (list: IMessge[]) => {
     }
   };
 
-  const deleteMsg = async (id: ObjectId) => {
+  const deleteMsg = async () => {
+    if(!displayMsg) return
+
     try {
-      const res = await deleteMessage(id);
+      const res = await deleteMessage(displayMsg._id);
       if (res?.error) {
         toast.error(res.error);
         return;
       }
       setDisplayMsg(null);
-      setListMessage((prev) => [...prev].filter((m) => m._id !== id));
+      setListMessage((prev) => [...prev].filter((m) => m._id !== displayMsg._id));
     } catch (error) {
       toast.error("Operation failed");
     }
   };
 
-  return { listMessage, deleteMsg, displayMsg, clickMsg };
+  const addToClass = async () => {
+    if(!displayMsg) return
+    const { error, success } = await confirmationMessage(displayMsg)
+    if (error) {
+      toast.error(error)
+    }
+    if (success) {
+      toast.success(success)
+    }
+  }
+
+  return { listMessage, deleteMsg, displayMsg, clickMsg,addToClass };
 };

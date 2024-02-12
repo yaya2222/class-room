@@ -37,7 +37,7 @@ export default function Sidebar() {
 
   return (
     <aside className="relative h-full hidden md:block rounded-e-3xl">
-      <div className=" py-8 w-72 shadow-xl h-screen bg-gradient-to-t from-teal-400 to-blue-500 text-white rounded-e-3xl">
+      <div className=" py-8 w-72 shadow-xl h-screen bg-color text-white rounded-e-3xl">
         <div className="px-6 text-center">
           <h1 className="text-2xl font-semibold flex flex-col items-center justify-center">
             <Image src="/logo.png" alt="logo" width={110} height={110}/>

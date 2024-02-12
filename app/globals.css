@@ -20,3 +20,7 @@ body,
   @apply fixed inset-0 flex justify-center items-center bg-black bg-opacity-60;
   backdrop-filter: blur(3px);
 }
+
+.bg-color{
+  @apply bg-gradient-to-t from-teal-400 to-blue-500
+}
