@@ -1,20 +1,19 @@
-import {Document, ObjectId } from "mongoose";
+import { Document, ObjectId } from "mongoose";
+import { enumUsersClassRole } from "./Classroom";
 
-export enum enumTypeMessage{
-    GROUP_INVITATION="group_invitation",
+export enum enumTypeMessage {
+  GROUP_INVITATION = "group_invitation",
 }
 
-
-export default interface Meassge {
-   title:string,
-   body:string,
-   type:enumTypeMessage,
-   authorEmail:string,
-   receiver:ObjectId,
-   expires?: Date,
-   href?:string,
-   messageOpen:boolean,
-
+export default interface Messge {
+  title: string;
+  body: string;
+  type: enumTypeMessage;
+  authorEmail: string;
+  receiver: ObjectId;
+  classId: string;
+  role?: enumUsersClassRole;
+  messageOpen: boolean;
 }
 
-export interface IMeassge extends Meassge,Document {}
+export interface IMessge extends Messge, Document {}

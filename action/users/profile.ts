@@ -16,7 +16,6 @@ import IUser from "@/types/User";
 
 export const profile = async (values: z.infer<typeof ProfileSchema>) => {
   await dbConnect();
-console.log(111111111111);
 
   const vaildatedFields = ProfileSchema.safeParse(values);
   if (!vaildatedFields.success) {
@@ -44,7 +43,6 @@ console.log(111111111111);
 
   }
   await User.findByIdAndUpdate(sessionUser.id,dataToUpdate)
-  console.log(22222222222222);
 
   return { success: "The profile is updated successfully" }
 }

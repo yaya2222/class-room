@@ -3,12 +3,11 @@
 import { getUser } from "@/lib/auth";
 import dbConnect from "@/lib/db";
 import { AddMembersSchema } from "@/lib/zodSchema";
-import Classroom from "@/models/Classroom";
 import Message from "@/models/Message";
 import User from "@/models/User";
 import { findUserInClassroom } from "@/services/class";
 import { enumUsersClassRole } from "@/types/Classroom";
-import Meassge, { IMeassge, enumTypeMessage } from "@/types/Message";
+import Meassge, { enumTypeMessage } from "@/types/Message";
 import { IUserModel } from "@/types/User";
 import { z } from "zod";
 
@@ -55,7 +54,8 @@ export const addMembersToClass = async (
         receiver: recipientUser._id,
         type: enumTypeMessage.GROUP_INVITATION,
         messageOpen: false,
-        href: `/classes/${classroomId}?role=${roleModal}`
+        classId:classroomId,
+        role:roleModal as enumUsersClassRole
       };
       await Message.create({ ...message })
     }

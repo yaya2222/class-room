@@ -1,8 +1,9 @@
-import { getMessagesByUser } from "@/action/messages/getMessagesByUser";
+import { getMessagesByUser } from "@/action/messageActions";
 import UlMesaages from "@/components/UlMesaages";
 
 export default async function MessagesPage() {
   const { allMesaagedByUser, error } = await getMessagesByUser();
+  
   if (error) {
     return <div>{error}</div>;
   }
