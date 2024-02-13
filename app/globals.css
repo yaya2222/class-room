@@ -4,23 +4,73 @@
 
 html,
 body,
-:root{
+:root {
   height: 100%;
 }
 
-.iconSidebar{
-  @apply h-7 w-7
+.iconSidebar {
+  @apply h-7 w-7;
 }
 
-.linkSidebar:hover div{
-  @apply  text-blue-700 translate-x-2 -translate-y-1
+.linkSidebar:hover div {
+  @apply text-blue-700 translate-x-2 -translate-y-1;
 }
 
-.dialog{
+.dialog {
   @apply fixed inset-0 flex justify-center items-center bg-black bg-opacity-60;
   backdrop-filter: blur(3px);
 }
 
-.bg-color{
-  @apply bg-gradient-to-t from-teal-400 to-blue-500
+.bg-color {
+  @apply bg-gradient-to-t from-teal-400 to-blue-500;
 }
+
+.form-group {
+  @apply relative py-2 mb-2;
+}
+
+.form-group input,
+.form-group select {
+  @apply w-full bg-inherit  border-b-2 border-black px-2 py-1;
+}
+.form-group textarea {
+  @apply w-full  border-b-2 border-black px-3 py-1;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.datepicker-input:focus
+.form-group select:focus {
+  @apply outline-none;
+}
+
+.form-group label {
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  transition: all 0.3s ease-in-out;
+  @apply font-semibold pointer-events-none text-black;
+}
+
+.form-group textarea~ label {
+  position: absolute;
+  bottom: 70px;
+  left: 10px;
+  transition: all 0.3s ease-in-out;
+  @apply font-semibold pointer-events-none text-black;
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label,
+.form-group select:focus ~ label,
+.form-group select:not(:placeholder-shown) ~ label {
+  @apply -translate-y-7 text-sm;
+}
+
+
+.datepicker-container{
+  @apply translate-y-7
+}
+

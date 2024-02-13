@@ -25,9 +25,14 @@ export default async function classPage({ params }: ClassesPageProps) {
               className="h-full w-full rounded-t-3xl object-cover"
             />
           </div>
-          <div className="flex flex-col gap-2 pt-4 shadow-lg">
+          <div className="flex items-end justify-between shadow-lg p-4 rounded-b-3xl">
+            <div className="flex flex-col gap-2">
+
             <span className="text-4xl">{classroom.name}</span>
-            <span className="text-2xl">{classroom.description}</span>
+
+            <span className="text-2xl text-gray-500">{classroom.description}</span>
+            </div>
+            <span className="text-xl text-gray-500">{classroom.topic}</span>
           </div>
         </section>
       )}

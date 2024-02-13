@@ -1,4 +1,4 @@
-import { loginWithProvider } from "@/action/users/loginWithProvider";
+import { loginWithProvider } from "@/action/userActions";
 import FormProfile from "@/components/FormProfile";
 import { CgProfile } from "react-icons/cg";
 

@@ -36,14 +36,31 @@ export const AddMembersSchema = z.object({
   roleModal: z.optional(z.string()),
 });
 
-export const ProfileSchema = z.object({
-  name: z.optional(z.string()),
-  password: z.optional(z.string().min(6, { message: "Minimum 6 characters  required" })),
-  confirmPassword: z.optional(z
-    .string()
-    .min(6, { message: "Minimum 6 characters  required" })),
+export const ProfileSchema = z
+  .object({
+    name: z.optional(z.string()),
+    password: z.optional(
+      z.string().min(6, { message: "Minimum 6 characters  required" })
+    ),
+    confirmPassword: z.optional(
+      z.string().min(6, { message: "Minimum 6 characters  required" })
+    ),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Password don't match",
+  });
 
-}).refine((data) => data.password === data.confirmPassword, {
-  path: ["confirmPassword"],
-  message: "Password don't match",
+export const StudyMaterialSchema = z.object({
+  type: z.string().min(1, { message: "type is required" }),
+  title: z.string().min(1, { message: "title is required" }),
+  body: z.optional(z.string()),
+  grade: z.optional(
+    z
+      .number()
+      .min(0, { message: "Score must be between 0 and 100" })
+      .max(100, { message: "Score must be between 0 and 100" })
+  ),
+  tupic: z.optional(z.string()),
+  DueDate: z.optional(z.date().min(new Date(), { message: "Invalid date" })),
 });

@@ -26,22 +26,24 @@ export default function FormContext<S extends FieldValues>({
   return (
     <>
       {fields.map((field) => (
-        <div key={field.id} className="flex flex-col gap-1">
+        <div key={field.id} className="form-group">
+          
+          <input
+            disabled={isPending}
+            id={field.id}
+            type={field.type}
+            placeholder=" "
+            {...register(field.name as Path<S>)}
+           
+          />
           <label
                 htmlFor={field.id}
-                className={`text-xs  ${
+                className={`${
                   errors[field.name as Path<S>] ? "text-red-500" : "text-gray-500"
                 }`}
                 >
                 {field.label}
               </label>
-          <input
-            disabled={isPending}
-            id={field.id}
-            type={field.type}
-            {...register(field.name as Path<S>)}
-            className="text-sm  py-3  px-3 rounded-lg border-2 border-gray-300 "
-          />
           <ErrorInput message={errors[field.name as Path<S>]?.message as string} />
         </div>
       ))}
@@ -49,7 +51,7 @@ export default function FormContext<S extends FieldValues>({
         <button
           type="submit"
           disabled={isPending}
-          className="bg-sky-400 hover:bg-sky-600 px-10 py-2 rounded-lg text-white font-semibold disabled:bg-sky-200"
+          className="bg-color hover:bg-gradient-to-br hover:from-teal-400 hover:to-blue-600 px-10 py-2 rounded-lg text-white font-semibold disabled:bg-sky-200"
         >
           {textButton}
         </button>

@@ -19,9 +19,6 @@ export default interface IUser {
       role: enumUsersClassRole;
     }
   ];
-  //     classesManager:[ObjectId],
-  //     classesTeacher:[ObjectId],
-  //     classesStudent:[ObjectId],
 }
 
 export interface IUserModel extends IUser, Document {}

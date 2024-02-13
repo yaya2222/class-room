@@ -14,11 +14,11 @@ signIn(provider)
 
   return (
     <div className="space-y-2">
-      <button onClick={()=>onClick("google")} className="inline-flex items-center justify-center gap-2 border shadow-md w-full py-2 hover:bg-gray-100 ">
+      <button onClick={()=>onClick("google")} className="inline-flex items-center justify-center gap-2 border shadow-md w-full py-2 hover:scale-105 ">
         <FcGoogle className="w-8 h-8"/>
         <span className="font-semibold">Google</span>
       </button>
-      <button onClick={()=>onClick("github")} className="inline-flex items-center justify-center gap-2 border shadow-md w-full py-2 hover:bg-gray-100 ">
+      <button onClick={()=>onClick("github")} className="inline-flex items-center justify-center gap-2 border shadow-md w-full py-2 hover:scale-105 ">
         <IoLogoGithub className="w-8 h-8"/>
         <span className="font-semibold">GitHab</span>
       </button>

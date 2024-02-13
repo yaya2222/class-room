@@ -1,6 +1,6 @@
 "use client";
 
-import { login } from "@/action/users/login";
+import { login } from "@/action/userActions";
 import ErrorMessage from "@/components/ErrorMessage";
 import FormContext from "@/components/auth/FormContext";
 import Line from "@/components/auth/Line";
@@ -51,7 +51,7 @@ export default function LoginPage() {
       <Social />
       <Link
         href="/auth/register"
-        className="text-center text-xs hover:underline text-gray-500"
+        className="text-center text-xs hover:underline"
       >
         Don't have an account?
       </Link>

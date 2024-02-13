@@ -50,7 +50,6 @@ export default function AddMembers({
       setIsOpenModalToAddMembers(false)
      }
   };
-console.log({error,success});
 
   return (
     <>
