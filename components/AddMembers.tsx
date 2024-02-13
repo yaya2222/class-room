@@ -1,14 +1,14 @@
 "use client";
 import { useHandleAction } from "@/hooks/useHandleAction";
 import { AddMembersSchema } from "@/lib/zodSchema";
-import { enumUsersClassRole } from "@/types/Classroom";
+import { enumUsersClassRole } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoPersonAddSharp } from "react-icons/io5";
 import { z } from "zod";
 import ErrorInput from "./ErrorInput";
-import { addMembersToClass } from "@/action/classes/addMembersToClass";
+import { addMembersToClass } from "@/action/classroomActions";
 import toast from "react-hot-toast";
 
 interface AddMembersProps {

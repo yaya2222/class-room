@@ -3,10 +3,9 @@
 import dbConnect from "@/lib/db"
 import { getUser } from "@/lib/auth"
 import Message from "@/models/Message"
-import { IMessge } from "@/types/Message"
+import { IMessge,IClassroom } from "@/types"
 import mongoose, { ObjectId } from "mongoose"
 import Classroom from "@/models/Classroom"
-import { IClassroom } from "@/types/Classroom"
 import { findUserInClassroom } from "@/services/classroom"
 import User from "@/models/User"
 

@@ -1,8 +1,7 @@
 "use client";
 
 import { confirmationMessage, deleteMessage, openMessage } from "@/action/messageActions";
-import { IMessge } from "@/types/Message";
-import { ObjectId } from "mongoose";
+import { IMessge } from "@/types";
 import { useState } from "react";
 import toast from "react-hot-toast";
 

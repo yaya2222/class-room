@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { VerificationEmail } from "@/action/userActions";
-import FiledForm from "@/types/FiledForm";
+import {FiledForm} from "@/types";
 import FormContext from "@/components/auth/FormContext";
 import { useHandleAction } from "@/hooks/useHandleAction";
 import ErrorMessage from "@/components/ErrorMessage";

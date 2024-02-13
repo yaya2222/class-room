@@ -1,4 +1,4 @@
-import { IClassroom } from "@/types/Classroom";
+import { IClassroom } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 

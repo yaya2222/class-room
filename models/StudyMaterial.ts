@@ -1,5 +1,5 @@
 import { Schema, model, models } from "mongoose";
-import {IStudyMaterial, enumStudyMaterial} from "@/types/StudyMaterial"
+import {IStudyMaterial, enumStudyMaterial} from "@/types"
 
 const StudyMaterialchema = new Schema<IStudyMaterial>(
   {

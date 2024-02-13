@@ -1,5 +1,4 @@
-import { enumUsersClassRole } from "@/types/Classroom";
-import { IMessge, enumTypeMessage } from "@/types/Message";
+import { enumUsersClassRole,IMessge, enumTypeMessage  } from "@/types";
 import { Schema, model, models } from "mongoose";
 
 const Meassgechema = new Schema<IMessge>(

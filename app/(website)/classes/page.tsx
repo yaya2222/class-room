@@ -1,4 +1,4 @@
-import { getClasses } from "@/action/classes/getClasses";
+import { getClasses } from "@/action/classroomActions";
 import Classroom from "@/components/Classroom";
 import Link from "next/link";
 import { FiPlus } from "react-icons/fi";

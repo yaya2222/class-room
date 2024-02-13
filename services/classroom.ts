@@ -1,6 +1,5 @@
 import Classroom from "@/models/Classroom";
-import { IClassroom } from "@/types/Classroom";
-import { IUserModel } from "@/types/User";
+import { IClassroom } from "@/types";
 import { ObjectId } from "mongoose";
 
 export const findUserInClassroom =async (userId:string|ObjectId,classroomId:string|ObjectId)=>{

@@ -1,7 +1,7 @@
 "use client";
 
 import { useControlMessages } from "@/hooks/useControlMessages";
-import { IMessge } from "@/types/Message";
+import { IMessge } from "@/types";
 
 interface UlMesaagesProps {
   messages: IMessge[];

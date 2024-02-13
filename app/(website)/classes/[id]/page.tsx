@@ -1,4 +1,4 @@
-import { getClassById } from "@/action/classes/GetClassById";
+import { getClassById } from "@/action/classroomActions";
 import Classroom from "@/components/Classroom";
 import Image from "next/image";
 

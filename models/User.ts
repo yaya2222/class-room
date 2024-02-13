@@ -1,7 +1,5 @@
-import { enumUsersClassRole } from "@/types/Classroom";
-import { IUserModel, enumRole } from "@/types/User";
+import { IUserModel, enumRole,enumUsersClassRole } from "@/types";
 import { Schema, model, models } from "mongoose";
-import { string } from "zod";
 
 const UserSchame = new Schema<IUserModel>(
   {

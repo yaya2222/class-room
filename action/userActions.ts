@@ -18,10 +18,7 @@ import {
 import { generateTokenRegister } from "@/services/token";
 import { redirect } from "next/navigation";
 import { getUserByEmail } from "@/services/user";
-import { ITokenRegister } from "@/types/TokenRegister";
-import { IUserModel } from "@/types/User";
-import IUser from "@/types/User";
-import { IDisplayProfile } from "@/types/profile";
+import { ITokenRegister,IUserModel,IUser,IDisplayProfile } from "@/types";
 
 dbConnect();
 

@@ -3,7 +3,7 @@ import authConfig from "@/auth.config";
 import MongoClient from "@/lib/mogodb";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import { getUserById } from "./services/user";
-import { IUserModel, enumRole } from "./types/User";
+import { IUserModel, enumRole } from "@/types";
 import { type JWT } from "next-auth/jwt";
 import dbConnect from "./lib/db";
 import User from "./models/User";

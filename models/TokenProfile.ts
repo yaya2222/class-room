@@ -1,4 +1,4 @@
-import { ITokenRegister } from "@/types/TokenRegister"
+import { ITokenRegister } from "@/types"
 import { Schema, model, models } from "mongoose"
 
 const TokenRegisterSchema = new Schema<ITokenRegister>({

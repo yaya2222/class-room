@@ -8,7 +8,7 @@ import { z } from "zod";
 import { CreateClassSchema } from "@/lib/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useHandleAction } from "@/hooks/useHandleAction";
-import { CreateClass } from "@/action/classes/CreateClass";
+import { CreateClass } from "@/action/classroomActions";
 
 export default function NewPage() {
 

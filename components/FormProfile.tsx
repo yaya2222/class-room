@@ -3,7 +3,7 @@
 import { profile } from "@/action/userActions";
 import { useHandleAction } from "@/hooks/useHandleAction";
 import { ProfileSchema } from "@/lib/zodSchema";
-import { IDisplayProfile } from "@/types/profile";
+import { IDisplayProfile } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";

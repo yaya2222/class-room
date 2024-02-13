@@ -1,6 +1,6 @@
 import { createCodeToToken } from "@/utils/helperFunctions"
 import TokenRegister from "@/models/TokenRegister"
-import { ITokenRegister } from "@/types/TokenRegister"
+import { ITokenRegister } from "@/types"
 
 export const generateTokenRegister = async (email: string) => {
     try {

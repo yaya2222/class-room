@@ -5,7 +5,7 @@ import { LoginSchema } from "./lib/zodSchema";
 import { getUserByEmail } from "./services/user";
 import bcrypt from "bcryptjs";
 import dbConnect from "./lib/db";
-import { IUserModel } from "./types/User";
+import { IUserModel } from "@/types";
 
 export default {
   providers: [

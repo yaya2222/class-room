@@ -3,9 +3,7 @@
 import { getUser } from "@/lib/auth";
 import dbConnect from "@/lib/db";
 import Classroom from "@/models/Classroom";
-import { IClassroom, enumUsersClassRole } from "@/types/Classroom";
-import { IUserModel } from "@/types/User"
-import IMember from "@/types/Member"
+import { IClassroom, enumUsersClassRole,IUserModel,IMember,enumTypeMessage  } from "@/types";
 import { auth } from "@/auth";
 import { getUserById } from "@/services/user";
 import { Session } from "next-auth";
@@ -16,7 +14,6 @@ import { SessionUser } from "@/next-auth";
 import { AddMembersSchema } from "@/lib/zodSchema";
 import Message from "@/models/Message";
 import { findUserInClassroom } from "@/services/classroom";
-import Meassge, { enumTypeMessage } from "@/types/Message";
 
 dbConnect()
 
@@ -179,7 +176,7 @@ export const addMembersToClass = async (
     if (memberInClass) {
       return { error: "The user already exists in the group" };
     } else {
-      const message: Meassge = {
+      const message = {
         title: "Group invitation",
         body: `You are welcome to join the group with permission of ${roleModal} /n 
         id group:${classroomId}`,

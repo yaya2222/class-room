@@ -1,8 +1,6 @@
-import { getMembers } from "@/action/classes/getMembers"
-import { getRoleUserByClass } from "@/action/classes/getRoleUserByClass"
+import { getMembers,getRoleUserByClass } from "@/action/classroomActions"
 import AddMembers from "@/components/AddMembers"
-import { enumUsersClassRole } from "@/types/Classroom"
-import IMember from "@/types/Member"
+import { enumUsersClassRole,IMember } from "@/types"
 import Image from "next/image"
 
 interface MembersPageProps{

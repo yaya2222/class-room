@@ -1,4 +1,4 @@
-import { IClassroom, enumUsersClassRole } from "@/types/Classroom"
+import { IClassroom, enumUsersClassRole } from "@/types"
 import { Schema, model, models } from "mongoose"
 
 const ClassroomSchema = new Schema<IClassroom>({

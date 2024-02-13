@@ -8,7 +8,7 @@ import { FiPlus } from "react-icons/fi";
 import { GiCancel } from "react-icons/gi";
 import { z } from "zod";
 import ErrorInput from "./ErrorInput";
-import { enumStudyMaterial } from "@/types/StudyMaterial";
+import { enumStudyMaterial } from "@/types";
 import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
 
 const types = [
