@@ -2,10 +2,10 @@ import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { LoginSchema } from "./lib/zodSchema";
-import { getUserByEmail } from "./services/user";
 import bcrypt from "bcryptjs";
 import dbConnect from "./lib/db";
 import { IUserModel } from "@/types";
+import User from "./models/User";
 
 export default {
   providers: [
@@ -28,7 +28,7 @@ export default {
           if (validatedFileds.success) {
             const { email, password } = validatedFileds.data;
 
-            const user: IUserModel | null = await getUserByEmail(email);
+            const user: IUserModel | null = await User.findOne({ email });
             if (!user || !user.password || !user.emailVerified) return null;
             const passwordsMatch = await bcrypt.compare(
               password,

@@ -8,8 +8,6 @@ import { type JWT } from "next-auth/jwt";
 import dbConnect from "./lib/db";
 import User from "./models/User";
 
-
-
 export const {
   handlers: { GET, POST },
   auth,
@@ -19,12 +17,8 @@ export const {
   adapter: MongoDBAdapter(MongoClient),
   secret: process.env.AUTH_SECRET,
   session: { strategy: "jwt" },
-//   jwt:{
-// maxAge:10
-//   },
   pages: {
     signIn: "/auth/login",
-    // error: "/auth/login",
   },
   events: {
     async linkAccount({ user }) {

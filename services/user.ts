@@ -8,12 +8,3 @@ export const getUserById = (id: string) => {
         return null
     }
 }
-
-
-export const getUserByEmail = (email: string) => {
-    try {
-        return User.findOne({ email })
-    } catch (error) {
-        return null;
-    }
-};

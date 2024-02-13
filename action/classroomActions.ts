@@ -5,7 +5,6 @@ import dbConnect from "@/lib/db";
 import Classroom from "@/models/Classroom";
 import { IClassroom, enumUsersClassRole,IUserModel,IMember,enumTypeMessage  } from "@/types";
 import { auth } from "@/auth";
-import { getUserById } from "@/services/user";
 import { Session } from "next-auth";
 import { z } from "zod";
 import { CreateClassSchema } from "@/lib/zodSchema";
@@ -71,7 +70,7 @@ export const getClasses = async () => {
     if (!session?.user) {
       return { error: "No permissions" };
     }
-    const user: IUserModel | null = await getUserById(session.user.id);
+    const user: IUserModel | null = await  User.findById(session.user.id);
     if (!user) {
       return { error: "User not exsit" };
     }

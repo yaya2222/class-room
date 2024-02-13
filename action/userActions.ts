@@ -17,7 +17,6 @@ import {
 } from "@/lib/zodSchema";
 import { generateTokenRegister } from "@/services/token";
 import { redirect } from "next/navigation";
-import { getUserByEmail } from "@/services/user";
 import { ITokenRegister,IUserModel,IUser,IDisplayProfile } from "@/types";
 
 dbConnect();
@@ -78,7 +77,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
   }
   const { name, email, password } = vaildatedFields.data;
 
-  const exsitingUser = await getUserByEmail(email);
+  const exsitingUser = await User.findOne({ email });
   if (exsitingUser) {
     return { error: "Email already in use!" };
   }
@@ -163,7 +162,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
   const { email, password } = vaildatedFields.data;
 
-  const existingUser = await getUserByEmail(email);
+  const existingUser = await User.findOne({ email });
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email does not exist!" };
