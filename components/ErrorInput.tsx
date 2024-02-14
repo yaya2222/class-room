@@ -5,5 +5,5 @@ interface ErrorInputProps {
 export default function ErrorInput({ message }: ErrorInputProps) {
   if (!message) return null;
 
-  return <div className="text-xs text-red-500">{message}</div>;
+  return <div className="text-xs text-red-500 mt-2">{message}</div>;
 }

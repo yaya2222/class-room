@@ -18,7 +18,7 @@ export default function Classroom({ classroom }: ClassProps) {
         <h3 className="font-semibold text-2xl truncate">{name}</h3>
         <p className="text-lg truncate">{description?description:"No description"}</p>
         <p className="truncate">{topic?topic:"No topic"}</p>
-        <p className="text-sm text-gray-500">Number of users: {users.length}</p>
+        <p className="text-sm text-gray-500">Nembers: {users.length}</p>
         </div>
       </div>
     </Link>

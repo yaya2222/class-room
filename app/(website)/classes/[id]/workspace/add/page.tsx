@@ -1,64 +1,49 @@
 "use client";
+
 import { useHandleAction } from "@/hooks/useHandleAction";
 import { StudyMaterialSchema } from "@/lib/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FiPlus } from "react-icons/fi";
-import { GiCancel } from "react-icons/gi";
 import { z } from "zod";
-import ErrorInput from "./ErrorInput";
+import ErrorInput from "@/components/ErrorInput";
 import { enumStudyMaterial } from "@/types";
 import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
+import { FiLink2 } from "react-icons/fi";
+import { BsFiles } from "react-icons/bs";
 
 const types = [
-  { value: enumStudyMaterial.EXAMINATION, label: "Examination" },
-  { value: enumStudyMaterial.TASK, label: "Task" },
-  { value: enumStudyMaterial.POST, label: "Post" },
-];
+    { value: enumStudyMaterial.EXAMINATION, label: "Examination" },
+    { value: enumStudyMaterial.TASK, label: "Task" },
+    { value: enumStudyMaterial.POST, label: "Post" },
+  ];
 
-export default function AddStudyMaterial() {
-  const [openModel, setOpenModel] = useState<boolean>(false);
-  const [value, setValue] = useState<{
-    startDate: Date | null;
-    endDate: Date | null;
-  }>({
-    startDate: null,
-    endDate: null,
-  });
-  const { handleAction, error, success, isPending } = useHandleAction();
-
-  const form = useForm<z.infer<typeof StudyMaterialSchema>>({
-    resolver: zodResolver(StudyMaterialSchema),
-  });
-
-  const onSubmit = async (values: z.infer<typeof StudyMaterialSchema>) => {};
-
-  const changeOpenModel = () => setOpenModel((prev) => !prev);
-  return (
-    <div>
-      <button
-        onClick={changeOpenModel}
-        className="flex items-center gap-1 bg-color text-white px-6 py-2 rounded-lg font-semibold text-xl"
-      >
-        Create <FiPlus />
-      </button>
-      {openModel && (
-        <div className="dialog">
-          <div className="bg-white pt-8 pb-2 text-start min-w-lg relative w-full h-full">
-            <GiCancel
-              onClick={changeOpenModel}
-              className="absolute top-3 right-3 text-xl text-red-500 hover:cursor-pointer hover:text-red-600"
-            />
-            <h3 className="text-2xl font-semibold text-black text-center">
-              Create Study Material
-            </h3>
-            <div className="mt-8 px-20">
+export default function AddPage() {
+    const [value, setValue] = useState<{
+      startDate: Date | null;
+      endDate: Date | null;
+    }>({
+      startDate: null,
+      endDate: null,
+    });
+    const { handleAction, error, success, isPending } = useHandleAction();
+  
+    const form = useForm<z.infer<typeof StudyMaterialSchema>>({
+      resolver: zodResolver(StudyMaterialSchema),
+    });
+  const typeStudyMaterial = form.watch("type")
+  
+    const onSubmit = async (values: z.infer<typeof StudyMaterialSchema>) => {};
+  
+    return (
+          <section>
+              <h3 className="text-2xl font-semibold text-black text-center">
+                Create Study Material
+              </h3>
               <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="flex justify-between"
-              >
-                <div className="grow max-w-4xl">
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className=" max-w-2xl m-auto"
+                >
                   <div className="form-group">
                     <select id="type" {...form.register("type")}>
                       {types.map((val) => (
@@ -123,8 +108,6 @@ export default function AddStudyMaterial() {
                       message={form.formState.errors.body?.message as string}
                     />
                   </div>
-                </div>
-                <div className="grow max-w-56">
                   <div className="form-group">
                     <input
                       disabled={isPending}
@@ -174,12 +157,24 @@ export default function AddStudyMaterial() {
                       Due date
                     </label>
                   </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+  
+                  <div className="mt-10">
+                    <h3>Add</h3>
+                    <div className="mt-3 text-center flex items-center gap-10   justify-center">
+                      <div className="flex flex-col gap-1 items-center justify-center w-16 h-16 rounded-full hover:scale-105 cursor-pointer">
+                        <FiLink2 /> <span>Links</span>
+                      </div>
+                      <div className="flex flex-col gap-1 items-center justify-center w-16 h-16 rounded-full hover:scale-105 cursor-pointer">
+                        <BsFiles /> <span>Files</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center mt-3">
+                  <button className="bg-color py-2 px-6 rounded-lg  hover:bg-gradient-to-b hover:scale-105 text-white font-semibold">Create</button>
+                  </div>
+                </form>
+          </section>
+            
+    )  
+  }
+  

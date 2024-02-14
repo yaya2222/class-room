@@ -1,5 +1,4 @@
 import { getClassById } from "@/action/classroomActions";
-import Classroom from "@/components/Classroom";
 import Image from "next/image";
 
 interface ClassesPageProps {
@@ -7,6 +6,7 @@ interface ClassesPageProps {
     id: string;
   };
 }
+export const dynamic = 'auto'
 
 export default async function classPage({ params }: ClassesPageProps) {
 

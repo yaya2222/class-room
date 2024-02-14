@@ -44,6 +44,11 @@ body,
   @apply outline-none;
 }
 
+select{
+  
+  @apply outline-none;
+}
+
 .form-group label {
   position: absolute;
   bottom: 10px;
@@ -71,6 +76,6 @@ body,
 
 
 .datepicker-container{
-  @apply translate-y-7
+  @apply translate-y-7 
 }
 
