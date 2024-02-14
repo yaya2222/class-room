@@ -9,11 +9,12 @@ import Classroom from "@/models/Classroom"
 import { findUserInClassroom } from "@/services/classroom"
 import User from "@/models/User"
 
-dbConnect()
 
 
 export const getMessagesByUser = async () => {
     try {
+        await dbConnect();
+
         const sessionUser = await getUser()
         const receiverId = new mongoose.Types.ObjectId(sessionUser.id)
         const allMesaagedByUser:IMessge[] = await Message.find({ receiver: receiverId })
@@ -25,12 +26,16 @@ export const getMessagesByUser = async () => {
     
     
     export const openMessage = async (messageId:ObjectId) => {
+        await dbConnect();
+
         await Message.findByIdAndUpdate(messageId,{messageOpen:true})      
         
 }
 
 export const deleteMessage = async (messageId:ObjectId)=>{
     try {
+        await dbConnect();
+
         await Message.findByIdAndDelete(messageId)
     } catch (error) {
         return {error:"The delete operation failed"}        
@@ -39,6 +44,8 @@ export const deleteMessage = async (messageId:ObjectId)=>{
 
 export const confirmationMessage = async (msg:IMessge)=>{
     try {
+        await dbConnect();
+
         const classroom:IClassroom|null = await Classroom.findById(msg.classId)
         if(!classroom) return {error:'classroom not exsit'}
         const sessionUser = await getUser()

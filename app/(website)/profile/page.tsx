@@ -4,7 +4,6 @@ import { CgProfile } from "react-icons/cg";
 
 export default async function ProfilePage() {
   const user = await loginWithProvider();
-  console.log(user);
 
   return (
     <div className=" flex justify-center items-center h-full ">

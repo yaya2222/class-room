@@ -25,7 +25,6 @@ export enum enumRole {
 export interface IClassroom extends Document {
   name: string;
   description?: string;
-  topic?: string;
   image: string;
   users: [
     {
@@ -35,6 +34,7 @@ export interface IClassroom extends Document {
   ];
   code: string;
   posts: [ObjectId];
+  topic?:string[];
 }
 
 export  interface IMember {

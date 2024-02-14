@@ -57,10 +57,11 @@ export const StudyMaterialSchema = z.object({
   body: z.optional(z.string()),
   grade: z.optional(
     z
-      .number()
-      .min(0, { message: "Score must be between 0 and 100" })
-      .max(100, { message: "Score must be between 0 and 100" })
+      .string()
   ),
   tupic: z.optional(z.string()),
+  classroomId: z.optional(z.string()),
   DueDate: z.optional(z.date().min(new Date(), { message: "Invalid date" })),
-});
+}).refine(data=>!data.grade||(Number(data.grade)>=1&&Number(data.grade)<=100),
+{path: ["grade"],
+    message: "The score must be between 1-100",});

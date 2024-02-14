@@ -19,11 +19,12 @@ import { generateTokenRegister } from "@/services/token";
 import { redirect } from "next/navigation";
 import { ITokenRegister,IUserModel,IUser,IDisplayProfile } from "@/types";
 
-dbConnect();
 
 export const VerificationEmail = async (
   values: z.infer<typeof VerificationEmailSchema>
 ) => {
+  await dbConnect();
+
   const hashEmail = cookies().get("validation_e")?.value;
   const password = cookies().get("validation_p")?.value;
 
@@ -71,6 +72,8 @@ export const VerificationEmail = async (
 };
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
+  await dbConnect();
+
   const vaildatedFields = RegisterSchema.safeParse(values);
   if (!vaildatedFields.success) {
     return { error: "Invalid field!" };
@@ -105,6 +108,8 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 };
 
 export const profile = async (values: z.infer<typeof ProfileSchema>) => {
+  await dbConnect();
+
   const vaildatedFields = ProfileSchema.safeParse(values);
   if (!vaildatedFields.success) {
     return { error: "Invalid field!" };
@@ -138,6 +143,8 @@ export const profile = async (values: z.infer<typeof ProfileSchema>) => {
 };
 
 export const loginWithProvider = async () => {
+  await dbConnect();
+
   const sessionUser = await getUser();
   const userInDb: IUser | null = await User.findById(sessionUser.id);
   if (!userInDb) {
@@ -155,6 +162,8 @@ export const loginWithProvider = async () => {
 };
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
+  await dbConnect();
+
   const vaildatedFields = LoginSchema.safeParse(values);
   if (!vaildatedFields.success) {
     return { error: "Invalid field!" };

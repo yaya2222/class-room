@@ -11,6 +11,8 @@ import { enumStudyMaterial } from "@/types";
 import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
 import { FiLink2 } from "react-icons/fi";
 import { BsFiles } from "react-icons/bs";
+import { createStudyMaterial } from "@/action/studyMaterialActions";
+import ErrorMessage from "@/components/ErrorMessage";
 
 const types = [
     { value: enumStudyMaterial.EXAMINATION, label: "Examination" },
@@ -18,7 +20,13 @@ const types = [
     { value: enumStudyMaterial.POST, label: "Post" },
   ];
 
-export default function AddPage() {
+  interface AddPageProps {
+    params: {
+      id: string;
+    };
+  }
+
+export default function AddPage({params:{id}}:AddPageProps) {
     const [value, setValue] = useState<{
       startDate: Date | null;
       endDate: Date | null;
@@ -26,20 +34,24 @@ export default function AddPage() {
       startDate: null,
       endDate: null,
     });
-    const { handleAction, error, success, isPending } = useHandleAction();
-  
+    const { handleAction, error, isPending } = useHandleAction();
     const form = useForm<z.infer<typeof StudyMaterialSchema>>({
       resolver: zodResolver(StudyMaterialSchema),
     });
   const typeStudyMaterial = form.watch("type")
   
-    const onSubmit = async (values: z.infer<typeof StudyMaterialSchema>) => {};
+    const onSubmit = async (values: z.infer<typeof StudyMaterialSchema>) => {
+      values.DueDate=value.endDate?new Date(value.endDate):undefined
+      values.classroomId=id
+      handleAction(createStudyMaterial,values)
+    };
   
     return (
           <section>
               <h3 className="text-2xl font-semibold text-black text-center">
                 Create Study Material
               </h3>
+              <ErrorMessage message={error}/>
               <form
                   onSubmit={form.handleSubmit(onSubmit)}
                   className=" max-w-2xl m-auto"
@@ -47,7 +59,7 @@ export default function AddPage() {
                   <div className="form-group">
                     <select id="type" {...form.register("type")}>
                       {types.map((val) => (
-                        <option value={val.value}>{val.label}</option>
+                        <option key={val.value} value={val.value}>{val.label}</option>
                       ))}
                     </select>
                     <label
@@ -64,6 +76,7 @@ export default function AddPage() {
                       message={form.formState.errors.type?.message as string}
                     />
                   </div>
+                  
                   <div className="form-group">
                     <input
                       disabled={isPending}
@@ -85,6 +98,7 @@ export default function AddPage() {
                       message={form.formState.errors.title?.message as string}
                     />
                   </div>
+                  
                   <div className="form-group mt-4">
                     <textarea
                       className="bg-gray-100"
@@ -108,6 +122,9 @@ export default function AddPage() {
                       message={form.formState.errors.body?.message as string}
                     />
                   </div>
+                  
+                  {typeStudyMaterial!==enumStudyMaterial.POST&&
+                  <>
                   <div className="form-group">
                     <input
                       disabled={isPending}
@@ -132,6 +149,7 @@ export default function AddPage() {
                       message={form.formState.errors.grade?.message as string}
                     />
                   </div>
+                  
                   <div className="form-group">
                     <Datepicker
                       minDate={new Date()}
@@ -157,7 +175,10 @@ export default function AddPage() {
                       Due date
                     </label>
                   </div>
-  
+                  </>
+                  }
+                   
+
                   <div className="mt-10">
                     <h3>Add</h3>
                     <div className="mt-3 text-center flex items-center gap-10   justify-center">
