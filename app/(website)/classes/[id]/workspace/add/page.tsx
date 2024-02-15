@@ -1,7 +1,7 @@
 "use client";
 
 import { useHandleAction } from "@/hooks/useHandleAction";
-import { StudyMaterialSchema } from "@/lib/zodSchema";
+import { postSchema } from "@/lib/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,7 @@ import { enumStudyMaterial } from "@/types";
 import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
 import { FiLink2 } from "react-icons/fi";
 import { BsFiles } from "react-icons/bs";
-import { createStudyMaterial } from "@/action/studyMaterialActions";
+import { createPost } from "@/action/postActions";
 import ErrorMessage from "@/components/ErrorMessage";
 
 const types = [
@@ -35,15 +35,15 @@ export default function AddPage({params:{id}}:AddPageProps) {
       endDate: null,
     });
     const { handleAction, error, isPending } = useHandleAction();
-    const form = useForm<z.infer<typeof StudyMaterialSchema>>({
-      resolver: zodResolver(StudyMaterialSchema),
+    const form = useForm<z.infer<typeof postSchema>>({
+      resolver: zodResolver(postSchema),
     });
   const typeStudyMaterial = form.watch("type")
   
-    const onSubmit = async (values: z.infer<typeof StudyMaterialSchema>) => {
+    const onSubmit = async (values: z.infer<typeof postSchema>) => {
       values.DueDate=value.endDate?new Date(value.endDate):undefined
       values.classroomId=id
-      handleAction(createStudyMaterial,values)
+      handleAction(createPost,values)
     };
   
     return (

@@ -9,7 +9,7 @@ interface ClassProps {
 export default function Classroom({ classroom }: ClassProps) {
   const { _id, name, image, description, topic, users } = classroom;
   return (
-    <Link href={`classes/${_id}`} className="bg-white rounded-2xl border border-gray-300 hover:shadow-md hover:shadow-gray-300  transition duration-500 ease-in-out w-72">
+    <Link href={`classes/${_id}`} className="bg-white rounded-2xl border border-gray-400 hover:shadow-lg hover:shadow-gray-400  transition duration-500 ease-in-out w-72">
       <div>
         <div className="h-36 w-full ">
           <Image src={image} alt={name} height={224} width={224} className=" w-full h-full rounded-t-2xl" />

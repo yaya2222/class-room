@@ -3,7 +3,7 @@
 import { getUser } from "@/lib/auth";
 import dbConnect from "@/lib/db";
 import Classroom from "@/models/Classroom";
-import { IClassroom, enumUsersClassRole, IUserModel, IMember, enumTypeMessage } from "@/types";
+import { IClassroom, enumUsersClassRole, IUserModel, IMember, enumTypeMessage, IPost } from "@/types";
 import { auth } from "@/auth";
 import { Session } from "next-auth";
 import { z } from "zod";
@@ -140,6 +140,7 @@ export const CreateClass = async (
   await User.findByIdAndUpdate(userDb._id, {
     $addToSet: { classes: { idClass: newClass._id, role: enumUsersClassRole.ADMINISTRATION } }
   })
+  revalidatePath("/classes")
   return { success: `create class id: ${newClass._id}` };
 };
 
@@ -237,13 +238,17 @@ export const addMembersToClass = async (
 export const getAllStudyMaterialOfClassroom = async (classroomId:string)=>{
   try {
       await dbConnect();
-      const classroom  = await Classroom.findById(classroomId).populate("posts")
-      if(!classroom) return {error:"Classroom is not exsit"}
-      console.log({classroom});
+      const classroom:IClassroom|null = await Classroom.findById(classroomId)
+      if(!classroom) return {error:"Classroom is not exsit",posts:null}
+      if(!classroom.posts.length) return {posts:[] as IPost[],error:null}
+      const {posts} = await classroom.populate("posts")
         revalidatePath(`/(website)/classes/${classroomId}/workspace`,"page")
-        return {posts:Classroom}
-  }catch{
-      return {error:"Error"}
+        //@ts-ignore
+        return {posts:posts as IPost[],error:null}
+  }catch(error){
+    console.log(error);
+    
+      return {error:"Error",posts:null}
   }
 
 }

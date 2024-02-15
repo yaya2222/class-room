@@ -37,6 +37,21 @@ export interface IClassroom extends Document {
   topic?:string[];
 }
 
+export interface IClassroomWithPosts extends Document {
+  name: string;
+  description?: string;
+  image: string;
+  users: [
+    {
+      idUser: ObjectId;
+      role: enumUsersClassRole;
+    }
+  ];
+  code: string;
+  posts: [ObjectId];
+  topic?:string[];
+}
+
 export  interface IMember {
   _id: ObjectId;
   name: string;
@@ -56,7 +71,7 @@ export interface IMessge extends Document {
   messageOpen: boolean;
 }
 
-export interface IStudyMaterial extends  Document {
+export interface IPost extends  Document {
     type:enumStudyMaterial,
     title:string,
     body?:string,
@@ -65,6 +80,7 @@ export interface IStudyMaterial extends  Document {
     grade?:number,
     tupic?:string,
     DueDate?:Date,
+    createdAt?:Date
 }
 
 export interface ITokenRegister extends Document {

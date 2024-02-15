@@ -51,7 +51,7 @@ export const ProfileSchema = z
     message: "Password don't match",
   });
 
-export const StudyMaterialSchema = z.object({
+export const postSchema = z.object({
   type: z.string().min(1, { message: "type is required" }),
   title: z.string().min(1, { message: "title is required" }),
   body: z.optional(z.string()),

@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
-import {IStudyMaterial, enumStudyMaterial} from "@/types"
+import {IPost, enumStudyMaterial} from "@/types"
 
-const StudyMaterialchema = new Schema<IStudyMaterial>(
+const PostSchema = new Schema<IPost>(
   {
     type:{type:String,enum:enumStudyMaterial,required:true},
     title:{type:String,required:true},
@@ -16,4 +16,4 @@ const StudyMaterialchema = new Schema<IStudyMaterial>(
   { timestamps: true }
 );
 
-export default models?.StudyMaterial || model<IStudyMaterial>("StudyMaterial", StudyMaterialchema);
+export default models?.Post || model<IPost>("Post", PostSchema);
