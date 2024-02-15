@@ -6,7 +6,6 @@ interface ClassesPageProps {
     id: string;
   };
 }
-export const dynamic = 'auto'
 
 export default async function classPage({ params }: ClassesPageProps) {
 

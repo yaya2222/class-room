@@ -10,7 +10,7 @@ interface WorkspacePageProps {
 export default function WorkspacePage({params:{id}}:WorkspacePageProps) {
 
 
-console.log(id);
+
 
   return (
     <div className=" pb-4 px-4">

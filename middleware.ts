@@ -1,39 +1,38 @@
-import NextAuth from "next-auth"
-import authConfig from "@/auth.config"
-import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, authRoutes, publicRoutes } from "@/route"
-import { NextResponse } from "next/server"
-const {auth}= NextAuth(authConfig)
+import { getToken } from "next-auth/jwt";
+import { NextRequest } from "next/server";
+import { DEFAULT_LOGIN_REDIRECT, apiAuthPrefix, authRoutes, protectedRoutes } from "@/route";
 
-export default auth( (req) => {
-const {nextUrl} = req
-const {pathname} = nextUrl
-const isLogin = !!req.auth
+export default async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+  
+  const secret = process.env.AUTH_SECRET ? process.env.AUTH_SECRET : "";
+  // @ts-ignore
+    const token = await getToken({ req: req, secret });
+    const isLogin = !!token
 
-const isApiAuthRoutes = nextUrl.pathname.startsWith(apiAuthPrefix)
-const isPublicRoutes = publicRoutes.includes(pathname)
+const isApiAuthRoutes = pathname.startsWith(apiAuthPrefix)
+const isProtectedRoutes = !!protectedRoutes.find(path=>pathname.startsWith(path))
+
 const isAuthRoutes = authRoutes.includes(pathname)
 if(isApiAuthRoutes) return null
 
 if(isAuthRoutes){
-    if(isLogin){
-        return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT,nextUrl))
-    }
-    return null
+  if(isLogin){
+    return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT,req.nextUrl))
+  }
+  return null
 }
 
+if(isProtectedRoutes){
+  if(!isLogin){
+    return Response.redirect(new URL("/auth/login",req.nextUrl))
+  }
+  return null
+} 
 
-
-if(!isLogin&&!isPublicRoutes){
-    return Response.redirect(new URL("/auth/login",nextUrl))
+  return null;
 }
-return null
-})
-
-
-
-
-
 
 export const config = {
-    matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
-}
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+};

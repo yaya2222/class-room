@@ -51,7 +51,7 @@ export default function FormContext<S extends FieldValues>({
         <button
           type="submit"
           disabled={isPending}
-          className="bg-color hover:bg-gradient-to-br hover:from-teal-400 hover:to-blue-600 px-10 py-2 rounded-lg text-white font-semibold disabled:bg-sky-200"
+          className="bg-color hover:bg-gradient-to-br hover:from-teal-400 hover:to-blue-600 px-10 py-2 rounded-lg text-white font-semibold disabled:bg-sky-200 cursor-pointer"
         >
           {textButton}
         </button>
