@@ -1,3 +1,4 @@
+import { getAllStudyMaterialOfClassroom } from "@/action/classroomActions";
 import Link from "next/link";
 
 
@@ -7,10 +8,9 @@ interface WorkspacePageProps {
   };
 }
 
-export default function WorkspacePage({params:{id}}:WorkspacePageProps) {
+export default async function WorkspacePage({params:{id}}:WorkspacePageProps) {
 
-
-
+const posts = await getAllStudyMaterialOfClassroom(id)
 
   return (
     <div className=" pb-4 px-4">
