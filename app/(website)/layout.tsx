@@ -1,4 +1,5 @@
 import Sidebar from "@/components/Sidebar";
+import { EdgeStoreProvider } from '@/lib/edgestore';
 
 export default function WebsiteLauout({
   children,
@@ -9,7 +10,9 @@ export default function WebsiteLauout({
     <main className="min-h-screen flex">
       <Sidebar />
       <div className="py-10 px-8 w-full">
-      {children}
+        
+      <EdgeStoreProvider>{children}</EdgeStoreProvider>
+
 
       </div>
     </main>

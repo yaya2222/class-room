@@ -18,6 +18,8 @@ import {
 import { generateTokenRegister } from "@/services/token";
 import { redirect } from "next/navigation";
 import { ITokenRegister,IUserModel,IUser,IDisplayProfile } from "@/types";
+import { findUserInClassroom } from "@/services/classroom";
+import { ObjectId } from "mongoose";
 
 
 export const VerificationEmail = async (
@@ -192,3 +194,25 @@ await dbConnect()
   }
   return await signInWithCredentials(existingUser.email, password);
 };
+
+export const roleUserInClassroom = async (classroomId:ObjectId|string)=>{
+  try {
+    
+    await dbConnect()
+    const userSession =await getUser()
+    const userInDb:IUserModel|null = await User.findById(userSession.id)
+    if(!userInDb){
+      return {error:"User is not exsit",role:null}
+    }
+    const res = await findUserInClassroom(userInDb._id,classroomId)
+    if(!res) {
+      return {error:"User is not exsit inClassroom",role:null}
+    }
+    
+    return {error:null,role:res.role}
+  } catch (error) {
+    console.log(error);
+    
+    return {error:"faild",role:null}
+  }
+}

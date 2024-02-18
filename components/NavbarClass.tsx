@@ -19,6 +19,10 @@ const links = [
     label: "Scores",
     href: "/scores",
   },
+  {
+    label: "Tests",
+    href: "/tests",
+  },
 ];
 
 interface NavbarClassProps {

@@ -4,7 +4,8 @@ const nextConfig = {
         remotePatterns:[
             {hostname:"img.freepik.com"},
             {hostname:"res.cloudinary.com"},
-            {hostname:"lh3.googleusercontent.com"}
+            {hostname:"lh3.googleusercontent.com"},
+            {hostname:"files.edgestore.dev"}
         ]
     }
 };

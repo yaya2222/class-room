@@ -1,4 +1,5 @@
 import { Document, ObjectId } from "mongoose";
+import { Interface } from "readline";
 
 export enum enumUsersClassRole {
   ADMINISTRATION = "administration",
@@ -81,6 +82,16 @@ export interface IPost extends  Document {
     tupic?:string,
     DueDate?:Date,
     createdAt?:Date
+    author:ObjectId
+    classroom:ObjectId
+}
+
+export interface ISolution extends Document{
+  postId:ObjectId,
+  userId:ObjectId,
+  text?:string,
+  file?:string
+  createdAt?:Date
 }
 
 export interface ITokenRegister extends Document {
@@ -121,4 +132,18 @@ export  interface FiledForm {
     name: string;
     label: string;
     type: "text" | "email" | "password";
+  }
+
+  interface test extends ISolution, Interface{userName:string, userEmail:string} {}
+
+  export interface IAllSolutionsByPost{
+    _id:[string],
+    solutions: test []
+  }
+
+  export interface IGradePost extends Document{
+    solution:ObjectId,
+    grade:number,
+    maxGrade:number
+    examiner:ObjectId
   }

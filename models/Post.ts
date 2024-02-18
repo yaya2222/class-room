@@ -1,5 +1,6 @@
 import { Schema, model, models } from "mongoose";
 import {IPost, enumStudyMaterial} from "@/types"
+import { ObjectId } from "mongodb";
 
 const PostSchema = new Schema<IPost>(
   {
@@ -10,7 +11,9 @@ const PostSchema = new Schema<IPost>(
     files:[String],
     grade:Number,
     tupic:String,
-    DueDate:Date
+    DueDate:Date,
+    author:{type:ObjectId,required:true},
+    classroom:{type:ObjectId,required:true}
 
   },
   { timestamps: true }

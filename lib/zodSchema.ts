@@ -62,6 +62,7 @@ export const postSchema = z.object({
   tupic: z.optional(z.string()),
   classroomId: z.optional(z.string()),
   DueDate: z.optional(z.date().min(new Date(), { message: "Invalid date" })),
+  file:z.optional(z.string())
 }).refine(data=>!data.grade||(Number(data.grade)>=1&&Number(data.grade)<=100),
 {path: ["grade"],
     message: "The score must be between 1-100",});

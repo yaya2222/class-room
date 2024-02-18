@@ -14,6 +14,8 @@ import { AddMembersSchema } from "@/lib/zodSchema";
 import Message from "@/models/Message";
 import { findUserInClassroom } from "@/services/classroom";
 import { revalidatePath } from "next/cache";
+import { log } from "console";
+import Post from "@/models/Post";
 
 
 
@@ -190,9 +192,10 @@ export const addMembersToClass = async (
         classId: classroomId,
         role: roleModal as enumUsersClassRole
       };
+
       await Message.create({ ...message })
     }
-
+      revalidatePath(`/messages`,"page")
     return { success: "Invitation sent!" };
   } catch (error) {
     console.log(error);
@@ -201,51 +204,18 @@ export const addMembersToClass = async (
   }
 };
 
-// export const getAllTopicsByClassroomId = async (classroomId: string) => {
-//   try {
-//     await dbConnect()
-//     const classroom: IClassroom | null = await Classroom.findById(classroomId)
-//     if (!classroom) return []
-//     return classroom.topic
-//   } catch (error) {
-//     return []
-//   }
-// }
-
-// export const addTopic = async (newTopic: string, classroomId: string) => {
-//   try {
-//     await dbConnect()
-
-//     const classroom: IClassroom | null = await Classroom.findById(classroomId)
-//     if (!classroom) return { error: "Classroom is not exsit" }
-//     const allTopics = classroom.topic
-//     let dataToUpdate
-//     if (allTopics) {
-//       if (allTopics.includes(newTopic.trim())) {
-//         return { error: "This topic already exists" }
-//       }
-//       dataToUpdate = { topic: [...allTopics, newTopic] }
-//     } else {
-//       dataToUpdate = { topic: [, newTopic] }
-//     }
-//     await Classroom.findByIdAndUpdate(classroomId, dataToUpdate)
-//     return {success:"Add topic"}
-//   } catch (error) {
-//     return { error: "Invitation failed" };
-//   }
-// }
-
 export const getAllStudyMaterialOfClassroom = async (classroomId:string)=>{
   try {
       await dbConnect();
       const classroom:IClassroom|null = await Classroom.findById(classroomId)
       if(!classroom) return {error:"Classroom is not exsit",posts:null}
       if(!classroom.posts.length) return {posts:[] as IPost[],error:null}
-      const {posts} = await classroom.populate("posts")
-        revalidatePath(`/(website)/classes/${classroomId}/workspace`,"page")
-        //@ts-ignore
-        return {posts:posts as IPost[],error:null}
+      const posts:any = classroom.posts
+      const dataOfposts:IPost[]= await Post.find({ _id: { $in: posts } })
+      revalidatePath(`/classes/${classroomId}/workspace`,"page")
+        return {posts:dataOfposts,error:null}
   }catch(error){
+    
     console.log(error);
     
       return {error:"Error",posts:null}
