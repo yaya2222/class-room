@@ -7,7 +7,7 @@ export default async function ProfilePage() {
 
   return (
     <div className=" flex justify-center items-center h-full ">
-      <div className="bg-color py-10 px-10 rounded-xl space-y-6 text-white  max-w-xl grow">
+      <div className="py-10 px-10 rounded-xl space-y-6   max-w-xl grow shadow shadow-gray-600">
         <h2 className="flex justify-center items-center gap-2 text-2xl">
           <CgProfile />
           <span className="font-semibold">Profile</span>

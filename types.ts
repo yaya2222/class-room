@@ -16,6 +16,7 @@ export enum enumStudyMaterial {
 
 export enum enumTypeMessage {
   GROUP_INVITATION = "group_invitation",
+  SCORE_ANNOUNCEMENT="score_announcement" 
 }
 
 export enum enumRole {
@@ -146,4 +147,7 @@ export  interface FiledForm {
     grade:number,
     maxGrade:number
     examiner:ObjectId
+    classroom:ObjectId
+    user:ObjectId
+    postTitle:string
   }

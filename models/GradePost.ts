@@ -7,6 +7,9 @@ const gradePostSchema = new Schema<IGradePost>(
     examiner:{ type: Schema.Types.ObjectId, required: true},
     grade:{ type: Number, required: true},
     maxGrade:{ type: Number, required: true},
+    classroom:{ type: Schema.Types.ObjectId, required: true},
+    user:{ type: Schema.Types.ObjectId, required: true},
+    postTitle:{ type: String, required: true},
   },
   { timestamps: true }
 );
